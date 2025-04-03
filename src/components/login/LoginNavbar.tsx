@@ -1,5 +1,5 @@
-import { FC } from "react";
-import AppName from "../common/AppName";
+import { FC } from 'react';
+import AppName from '../common/AppName';
 
 const LoginNavbar: FC = () => {
   return (
@@ -7,6 +7,6 @@ const LoginNavbar: FC = () => {
       <AppName />
     </header>
   );
-}
+};
 
 export default LoginNavbar;
