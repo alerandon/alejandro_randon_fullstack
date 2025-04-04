@@ -28,7 +28,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({
       </div>
       <button
         onClick={onRemove}
-        className="xl: mt-5 w-5/7 cursor-pointer self-start rounded-full bg-[#E3513D] px-4 py-2 text-sm font-medium text-nowrap text-white md:w-6/7 lg:w-6/8 lg:text-xs"
+        className="xl: mt-5 w-5/7 cursor-pointer self-start rounded-full bg-[#E3513D] px-4 py-2 text-sm font-medium text-nowrap text-white md:w-6/7 lg:w-11/12 lg:text-xs xl:w-9/12"
       >
         - Remover album
       </button>

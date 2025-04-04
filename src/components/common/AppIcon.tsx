@@ -1,11 +1,15 @@
 import React from 'react';
 
-const AppName: React.FC = () => {
+const AppIcon: React.FC = () => {
   return (
     <>
-      <h1 className="max-w-5xl text-xl font-medium">mms</h1>
+      <img
+        src="/src/assets/isotypes/music-search-isotype.png"
+        alt="my music search"
+        className="h-10 w-10 md:h-10 md:w-10"
+      />
     </>
   );
 };
 
-export default AppName;
+export default AppIcon;

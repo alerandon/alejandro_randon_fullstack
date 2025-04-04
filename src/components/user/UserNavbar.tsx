@@ -10,7 +10,7 @@ const UserNavbar: React.FC = () => {
       <p className="pr-3 pl-1.5 text-[12px] font-medium text-nowrap sm:px-4 sm:text-xs lg:text-sm">
         Mis albumes
       </p>
-      <div className="flex h-2/3 items-center border-l-1 border-white px-1.5 sm:px-4">
+      <div className="h4 flex h-5 items-center border-l-1 border-white pl-3 sm:px-4">
         <Logout className="h-full w-full" />
       </div>
       {/* <div className="flex h-2/3 items-center border-l-1 border-white px-1.5 sm:px-4">
