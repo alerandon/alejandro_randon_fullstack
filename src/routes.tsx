@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router';
 import UserLayout from './components/user/UserLayout';
 import MyAlbumsPage from './pages/MyAlbumsPage';
+import ArtistDetailPage from './pages/ArtistDetailPage';
 
 const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const SearchPage = React.lazy(() => import('./pages/SearchPage'));
@@ -15,15 +16,24 @@ const AppRoutes: React.FC = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/spotify/callback" element={<SpotifyCallback />} />
-
-        <Route
-          path="/search"
-          element={
-            <UserLayout>
-              <SearchPage />
-            </UserLayout>
-          }
-        />
+        <Route path="/search">
+          <Route
+            index
+            element={
+              <UserLayout>
+                <SearchPage />
+              </UserLayout>
+            }
+          />
+          <Route
+            path="artist/:id"
+            element={
+              <UserLayout>
+                <ArtistDetailPage />
+              </UserLayout>
+            }
+          />
+        </Route>
         <Route
           path="/my-albums"
           element={
