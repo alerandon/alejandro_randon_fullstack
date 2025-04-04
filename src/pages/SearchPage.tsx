@@ -1,6 +1,7 @@
 import React from "react";
-import AppIcon from "../components/common/AppIcon";
-import { Awake, Logout } from "@carbon/icons-react";
+import UserHeader from "../components/user/UserHeader";
+import ArtistSearcherSection from "../components/searcher/ArtistSearcherSection";
+import SearcherHeroSection from "../components/searcher/SearcherHeroSection";
 
 const SearchPage: React.FC = () => {
   const SPOTIFY_API_URL = "https://api.spotify.com/v1";
@@ -39,20 +40,12 @@ const SearchPage: React.FC = () => {
   }, [ACCESS_TOKEN_OBJECT]);
 
   return (
-    <div className="flex flex-col w-full mx-auto pb-10">
-      <header className="p-3 sticky top-0 flex justify-between bg-[#222222] z-10 shadow-md">
-        <AppIcon />
-        <div className="flex items-center">
-          <p className="text-[#D6F379] font-semibold text-[10px]">Buscar</p>
-          <p className="font-semibold text-[10px] text-nowrap px-2">Mis albumes</p>
-          <div className="flex items-center border-white border-l-1 h-2/3 px-2">
-            <Logout className="w-full h-full" />
-          </div>
-          <div className="flex items-center border-white border-l-1 h-2/3 px-2">
-            <Awake className="w-full h-full" />
-          </div>
-        </div>
-      </header>
+    <div className="flex flex-col items-center w-full pb-10">
+      <UserHeader />
+      <main className="flex flex-col lg:flex-row items-center md:items-start justify-center lg:justify-between xl:w-max h-full max-w-md lg:max-w-10/12 xl:max-w-[1440px] pt-4 md:pt-28 lg:pt-20 gap-8 md:gap-20 xl:gap-32 mx-5">
+        <SearcherHeroSection />
+        <ArtistSearcherSection />
+      </main>
     </div>
   );
 };
