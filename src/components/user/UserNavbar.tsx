@@ -4,12 +4,12 @@ import React from "react";
 const UserNavbar: React.FC = () => {
   return (
     <nav className="flex items-center">
-      <p className="text-[#D6F379] font-semibold text-[10px]">Buscar</p>
-      <p className="font-semibold text-[10px] text-nowrap px-2">Mis albumes</p>
-      <div className="flex items-center border-white border-l-1 h-2/3 px-2">
+      <p className="text-[#D6F379] font-semibold text-sm pr-1.5 sm:pr-2">Buscar</p>
+      <p className="font-semibold text-sm text-nowrap pl-1.5 pr-3 sm:px-4">Mis albumes</p>
+      <div className="flex items-center border-white border-l-1 h-2/3 px-1.5 sm:px-4">
         <Logout className="w-full h-full" />
       </div>
-      <div className="flex items-center border-white border-l-1 h-2/3 px-2">
+      <div className="flex items-center border-white border-l-1 h-2/3 px-1.5 sm:px-4">
         <Awake className="w-full h-full" />
       </div>
     </nav>

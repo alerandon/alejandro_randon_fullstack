@@ -42,7 +42,7 @@ const SearchPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center w-full pb-10">
       <UserHeader />
-      <main className="flex flex-col lg:flex-row items-center md:items-start justify-center lg:justify-between xl:w-max h-full max-w-md lg:max-w-10/12 xl:max-w-[1440px] pt-4 md:pt-28 lg:pt-20 gap-8 md:gap-20 xl:gap-32 mx-5">
+      <main className="flex flex-col items-center md:items-start justify-center h-full max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl pt-4 md:pt-6 gap-8 md:gap-20 lg:gap-12 mx-5">
         <SearcherHeroSection />
         <ArtistSearcherSection />
       </main>

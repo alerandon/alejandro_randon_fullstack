@@ -2,11 +2,11 @@ import React from "react";
 
 const ArtistCard: React.FC<{ artistName: string; followers: number; imageUrl: string }> = ({ artistName, followers, imageUrl }) => {
   return (
-    <div className="bg-transparent hover:bg-[#D6F379] text-white hover:text-gray-900 p-7 rounded-3xl flex flex-col items-center shadow-lg">
+    <div className="bg-transparent hover:bg-[#D6F379] text-white hover:text-gray-900 p-7 md:p-5 rounded-3xl flex flex-col items-center shadow-lg">
       <img src={imageUrl} alt={artistName} className="object-cover rounded-xl mb-4" />
       <div className="self-start pt-2">
-        <h3 className="text-3xl font-semibold">{artistName}</h3>
-        <p className="text-sm font-semibold pt-4">Followers: {followers.toLocaleString()}</p>
+        <h3 className="text-3xl lg:text-2xl font-semibold">{artistName}</h3>
+        <p className="text-sm lg:text-xs font-semibold pt-4">Followers: {followers.toLocaleString()}</p>
       </div>
     </div>
   );
@@ -85,8 +85,8 @@ const ArtistSearcherSection: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full mx-auto gap-12">
-      <div className="flex items-center bg-white rounded-full shadow-md px-4 py-2 w-full">
+    <div className="flex flex-col items-center w-full mx-auto gap-12 lg:gap-20">
+      <div className="flex items-center bg-white rounded-full shadow-md px-4 py-2 w-full lg:w-3/4">
         <input
           type="text"
           placeholder="Search for an artist..."
@@ -94,16 +94,18 @@ const ArtistSearcherSection: React.FC = () => {
         />
         <button className="bg-[#D6F379] text-black font-medium py-2 px-4 rounded-full">Search</button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
-        <p>Mostrando 4 resultados de 30</p>
-        {artists.map((artist, index) => (
-          <ArtistCard
-            key={index}
-            artistName={artist.artistName}
-            followers={artist.followers}
-            imageUrl={artist.imageUrl}
-          />
-        ))}
+      <div className="w-full">
+        <p className="pb-3 md:pb-5">Mostrando 4 resultados de 30</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {artists.map((artist, index) => (
+            <ArtistCard
+              key={index}
+              artistName={artist.artistName}
+              followers={artist.followers}
+              imageUrl={artist.imageUrl}
+            />
+          ))}
+        </div>
       </div>
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
     </div>
