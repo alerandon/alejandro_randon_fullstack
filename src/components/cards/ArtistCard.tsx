@@ -6,7 +6,7 @@ const ArtistCard: React.FC<{
   imageUrl: string;
 }> = ({ artistName, followers, imageUrl }) => {
   return (
-    <div className="flex flex-col items-center rounded-3xl bg-transparent p-7 text-white shadow-lg hover:bg-[#D6F379] hover:text-gray-900 md:p-5">
+    <div className="flex flex-col items-center rounded-3xl bg-transparent p-7 text-white hover:bg-[#D6F379] hover:text-gray-900 md:p-5">
       <img
         src={imageUrl}
         alt={artistName}

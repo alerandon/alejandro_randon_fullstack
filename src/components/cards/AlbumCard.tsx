@@ -14,19 +14,23 @@ const AlbumCard: React.FC<AlbumCardProps> = ({
   onRemove,
 }) => {
   return (
-    <div className="flex flex-col items-center rounded-lg bg-transparent p-6 text-white shadow-md">
+    <div className="flex flex-col items-center rounded-3xl bg-transparent p-7 text-white hover:bg-[#D6F379] hover:text-gray-900 md:p-5">
       <img
         src={imageUrl}
         alt={albumName}
-        className="mb-4 h-48 w-48 rounded-lg object-cover"
+        className="mb-4 rounded-xl object-cover"
       />
-      <h3 className="text-lg font-semibold">{albumName}</h3>
-      <p className="text-sm text-gray-400">Publicado: {publishedDate}</p>
+      <div className="self-start pt-2">
+        <h3 className="text-3xl font-semibold lg:text-2xl">{albumName}</h3>
+        <p className="mt-4 text-sm font-semibold lg:text-xs">
+          Publicado: {publishedDate}
+        </p>
+      </div>
       <button
         onClick={onRemove}
-        className="mt-4 rounded bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
+        className="xl: mt-5 w-5/7 cursor-pointer self-start rounded-full bg-[#E3513D] px-4 py-2 text-sm font-medium text-nowrap text-white md:w-6/7 lg:w-6/8 lg:text-xs"
       >
-        - Remove album
+        - Remover album
       </button>
     </div>
   );
