@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import useSpotifyAuth from '../../hooks/useSpotifyAuth';
 
 const SpotifyCallback = () => {
   const navigate = useNavigate();
@@ -9,18 +10,21 @@ const SpotifyCallback = () => {
     if (isProcessed.current) return;
 
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    console.log('Authorization Code:', code);
+    const authCode = urlParams.get('code');
 
-    if (code) {
-      console.log('Código de autorización encontrado:', code);
-      sessionStorage.setItem('spotifyAuthCode', code);
-      console.log('Token de acceso guardado en sessionStorage:', sessionStorage);
-      navigate('/search');
-    } else {
+    if (!authCode) {
       console.error('No se encontró el código de autorización en la URL');
       navigate('/');
+      return;
     }
+
+    (async () => {
+      useSpotifyAuth(authCode).catch((error) => {
+        navigate('/');
+        return;
+      })
+      navigate('/search');
+    })();
 
     isProcessed.current = true;
   }, [navigate]);

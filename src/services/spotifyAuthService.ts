@@ -1,6 +1,9 @@
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router';
+
 export const redirectToSpotifyLogin = () => {
-  const clientId = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
-  const redirectUri = process.env.REACT_APP_SPOTIFY_API_REDIRECT_URI;
+  const clientId = import.meta.env.VITE_SPOTIFY_API_CLIENT_ID;
+  const redirectUri = import.meta.env.VITE_SPOTIFY_API_REDIRECT_URI;
   const scopes = [
     'user-read-private',
     'user-read-email',
