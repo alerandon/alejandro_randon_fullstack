@@ -1,11 +1,13 @@
 import React from 'react';
+import MyAlbumsHeroSection from '../components/my-albums/MyAlbumsHeroSection';
+import MyAlbumsListSection from '../components/my-albums/MyAlbumsListSection';
 
 const MyAlbumsPage: React.FC = () => {
   return (
-    <div>
-      <h1>My Albums</h1>
-      <p>This is the My Albums page.</p>
-    </div>
+    <>
+      <MyAlbumsHeroSection />
+      <MyAlbumsListSection />
+    </>
   );
 };
 

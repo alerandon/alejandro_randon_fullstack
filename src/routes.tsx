@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import UserLayout from './components/user/UserLayout';
+import MyAlbumsPage from './pages/MyAlbumsPage';
 
 const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const SearchPage = React.lazy(() => import('./pages/SearchPage'));
@@ -27,7 +28,7 @@ const AppRoutes: React.FC = () => {
           path="/my-albums"
           element={
             <UserLayout>
-              <SearchPage />
+              <MyAlbumsPage />
             </UserLayout>
           }
         />
