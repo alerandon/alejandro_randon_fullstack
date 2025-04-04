@@ -10,22 +10,25 @@ const SpotifyCallback = () => {
     if (isProcessed.current) return;
 
     const urlParams = new URLSearchParams(window.location.search);
-    const authCode = urlParams.get('code');
+    const authCodeParam = urlParams.get('code');
+    const authUserBeforeRedirect = async (authCode: string) => {
+      try {
+        await authSpotifyAccount(authCode);
+        navigate('/search');
+      } catch (error) {
+        console.error('Error al procesar el código de autorización:', error);
+        navigate('/');
+        return;
+      }
+    };
 
-    if (!authCode) {
+    if (!authCodeParam) {
       console.error('No se encontró el código de autorización en la URL');
       navigate('/');
       return;
     }
 
-    (async () => {
-      authSpotifyAccount(authCode).catch((error) => {
-        navigate('/');
-        return;
-      });
-      navigate('/search');
-    })();
-
+    authUserBeforeRedirect(authCodeParam);
     isProcessed.current = true;
   }, [navigate]);
 
