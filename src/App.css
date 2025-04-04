@@ -5,23 +5,11 @@ html {
   color-scheme: light dark;
   font-family: 'Montserrat', system-ui;
   background-color: #222222;
-  padding-left: 8px;
-  padding-right: 8px;
   font-size: 16px;
 }
 
 @media (min-width: 640px) {
   html {
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 1024px) {
-  html {
-    padding-left: 24px;
-    padding-right: 24px;
     font-size: 20px;
   }
 }
