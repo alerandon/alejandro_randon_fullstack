@@ -3,7 +3,7 @@ import React from 'react';
 const AppName: React.FC = () => {
   return (
     <>
-      <h1 className="max-w-5xl w-full text-xl font-medium">my music search</h1>
+      <h1 className="w-full max-w-5xl text-xl font-medium">my music search</h1>
     </>
   );
 };

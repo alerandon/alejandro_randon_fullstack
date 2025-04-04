@@ -6,15 +6,8 @@ import LoginHero from './LoginHero';
 
 const LoginMain: React.FC = () => {
   return (
-    <main className="flex flex-col lg:flex-row items-center md:items-start justify-center lg:justify-between xl:w-max h-full max-w-xl lg:max-w-10/12 xl:max-w-[1440px] pt-16 md:pt-28 lg:pt-20 gap-12 md:gap-20 xl:gap-32 mx-auto">
-      <div
-        className="
-        w-[222px] h-[222px]
-        md:w-[400px] md:h-[400px]
-        lg:w-[430px] lg:h-[430px]
-        xl:w-[480px] xl:h-[480px]
-      "
-      >
+    <main className="mx-auto flex h-full max-w-xl flex-col items-center justify-center gap-12 pt-16 md:items-start md:gap-20 md:pt-28 lg:max-w-10/12 lg:flex-row lg:justify-between lg:pt-20 xl:w-max xl:max-w-[1440px] xl:gap-32">
+      <div className="h-[222px] w-[222px] md:h-[400px] md:w-[400px] lg:h-[430px] lg:w-[430px] xl:h-[480px] xl:w-[480px]">
         <DiagonalArrow />
       </div>
       <LoginHero />

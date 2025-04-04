@@ -22,7 +22,7 @@ const SpotifyCallback = () => {
       authSpotifyAccount(authCode).catch((error) => {
         navigate('/');
         return;
-      })
+      });
       navigate('/search');
     })();
 
@@ -30,7 +30,7 @@ const SpotifyCallback = () => {
   }, [navigate]);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex h-screen items-center justify-center">
       <p>Procesando inicio de sesión...</p>
     </div>
   );

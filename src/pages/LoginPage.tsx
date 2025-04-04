@@ -4,7 +4,7 @@ import LoginMain from '../components/login/LoginMain';
 
 const LoginPage: React.FC = () => {
   return (
-    <div className="flex flex-col w-full mx-auto pb-10">
+    <div className="mx-auto flex w-full flex-col pb-10">
       <LoginNavbar />
       <LoginMain />
     </div>
