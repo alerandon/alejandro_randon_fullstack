@@ -12,6 +12,7 @@ export const redirectToSpotifyLogin = () => {
     return;
   }
 
+  // TODO: Add if there is time the state query parameter to prevent CSRF attacks
   const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${encodeURIComponent(
     scopes.join(' ')
   )}&redirect_uri=${encodeURIComponent(redirectUri)}`;
