@@ -1,17 +1,19 @@
-import { Suspense, lazy, FC } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router';
 
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const SpotifyCallback = lazy(() => import('./components/callback/SpotifyCallback'));
+const LoginPage = React.lazy(() => import('./pages/LoginPage'));
+const SearchPage = React.lazy(() => import('./pages/SearchPage'));
+const SpotifyCallback = React.lazy(() => import('./components/callback/SpotifyCallback'));
 
-const AppRoutes: FC = () => {
+const AppRoutes: React.FC = () => {
   return (
-    <Suspense fallback={<div>Cargando...</div>}>
+    <React.Suspense fallback={<div>Cargando...</div>}>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/spotify/callback" element={<SpotifyCallback />} />
       </Routes>
-    </Suspense>
+    </React.Suspense>
   );
 };
 
