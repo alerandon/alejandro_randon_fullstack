@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import useSpotifyAuth from '../../hooks/useSpotifyAuth';
+import { authSpotifyAccount } from '../../services/spotifyAuthService';
 
 const SpotifyCallback = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const SpotifyCallback = () => {
     }
 
     (async () => {
-      useSpotifyAuth(authCode).catch((error) => {
+      authSpotifyAccount(authCode).catch((error) => {
         navigate('/');
         return;
       })

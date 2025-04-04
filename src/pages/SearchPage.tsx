@@ -1,4 +1,6 @@
 import React from "react";
+import AppIcon from "../components/common/AppIcon";
+import { Awake, Logout } from "@carbon/icons-react";
 
 const SearchPage: React.FC = () => {
   const SPOTIFY_API_URL = "https://api.spotify.com/v1";
@@ -37,9 +39,20 @@ const SearchPage: React.FC = () => {
   }, [ACCESS_TOKEN_OBJECT]);
 
   return (
-    <div>
-      <h1>Search Page</h1>
-      <p>Search for something...</p>
+    <div className="flex flex-col w-full mx-auto pb-10">
+      <header className="p-3 sticky top-0 flex justify-between bg-[#222222] z-10 shadow-md">
+        <AppIcon />
+        <div className="flex items-center">
+          <p className="text-[#D6F379] font-semibold text-[10px]">Buscar</p>
+          <p className="font-semibold text-[10px] text-nowrap px-2">Mis albumes</p>
+          <div className="flex items-center border-white border-l-1 h-2/3 px-2">
+            <Logout className="w-full h-full" />
+          </div>
+          <div className="flex items-center border-white border-l-1 h-2/3 px-2">
+            <Awake className="w-full h-full" />
+          </div>
+        </div>
+      </header>
     </div>
   );
 };
