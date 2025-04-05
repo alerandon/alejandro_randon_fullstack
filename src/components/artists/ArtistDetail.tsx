@@ -13,7 +13,7 @@ const ArtistDetail: React.FC<ArtistCardProps> = ({
   monthlyListeners,
 }) => {
   return (
-    <div className="mb-10 flex w-full flex-col items-start text-white md:mb-0 md:flex-row md:items-center md:justify-center">
+    <div className="mb-10 flex w-full flex-col items-start text-white md:mb-0 md:flex-row md:items-center md:justify-start md:gap-12 md:pl-5">
       <div className="flex h-full flex-col items-center justify-center">
         <img
           src="https://placehold.co/220"
@@ -23,10 +23,12 @@ const ArtistDetail: React.FC<ArtistCardProps> = ({
       </div>
       <div className="mt-8 md:mt-0">
         <div className="flex gap-3">
-          <CircleCheckFill size={20} fill="#619CED" />
+          <div className="flex flex-col justify-center">
+            <CircleCheckFill size={20} fill="#619CED" />
+          </div>
           <h5 className="text-sm font-medium">Artista certificado</h5>
         </div>
-        <h3 className="mt-1.5 text-4xl font-semibold lg:text-2xl">
+        <h3 className="mt-1.5 text-4xl font-semibold lg:text-5xl">
           {'artistName'}
         </h3>
         <div className="mt-10">
