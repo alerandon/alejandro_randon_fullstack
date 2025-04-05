@@ -20,7 +20,7 @@ const ArtistDetailSection: React.FC<ArtistDetailSectionProps> = ({
         <img
           src={artistImageUrl}
           alt="albumName"
-          className="rounded-full object-cover"
+          className="aspect-square h-40 w-40 rounded-full md:h-48 md:w-48 lg:h-52 lg:w-52"
         />
       </div>
       <div className="mt-8 md:mt-0">

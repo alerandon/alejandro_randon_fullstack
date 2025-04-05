@@ -42,7 +42,7 @@ const ArtistSearchSection: React.FC = () => {
           }}
         />
         <button
-          className="rounded-full bg-[#D6F379] px-4 py-2 font-medium text-black"
+          className="cursor-pointer rounded-full bg-[#D6F379] px-4 py-2 font-medium text-black"
           onClick={() => {
             const input = document.querySelector(
               'input[type="text"]',
@@ -65,7 +65,7 @@ const ArtistSearchSection: React.FC = () => {
             artists.items.map((artist, index) => (
               <ArtistCard
                 key={index}
-                id={artist.id}
+                artistId={artist.id}
                 artistName={artist.name}
                 followers={artist.followers.total}
                 imageUrl={artist.images[0]?.url}
