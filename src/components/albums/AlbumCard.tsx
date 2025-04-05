@@ -44,10 +44,14 @@ const AlbumCard: React.FC<AlbumCardProps> = ({
     if (albumIsSaved) setIsSaved(true);
   };
 
+  const formattedName = albumName.replace(/ /g, '+');
+  const finalImageUrl =
+    imageUrl || `https://placehold.co/500/gray/white?text=${formattedName}`;
+
   return (
     <div className="flex flex-col items-center rounded-3xl bg-transparent p-7 text-white hover:bg-[#D6F379] hover:text-gray-900 md:p-5">
       <img
-        src={imageUrl}
+        src={finalImageUrl}
         alt={albumName}
         className="mb-4 h-44 max-h-44 w-44 max-w-44 rounded-xl object-cover"
       />

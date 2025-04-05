@@ -284,6 +284,43 @@ const spotifyService = {
       throw error;
     }
   },
+
+  getUserSavedAlbums: async (token: string, page: number = 1) => {
+    if (!token) {
+      console.error('El token de acceso no está disponible.');
+      throw new Error(
+        'El token de acceso es requerido para realizar esta solicitud.',
+      );
+    }
+
+    try {
+      const limit = 8;
+      const offset = (page - 1) * limit;
+      const response = await fetch(
+        `${SPOTIFY_API_BASE_URL}/me/albums?limit=${limit}&offset=${offset}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error en la respuesta de la API:', errorData);
+        throw new Error(
+          `Error al obtener los álbumes guardados del usuario: ${response.status} ${response.statusText}`,
+        );
+      }
+
+      const data = await response.json();
+      console.log('Álbumes guardados recibidos de la API:', data);
+      return data;
+    } catch (error) {
+      console.error('Error en getUserSavedAlbums:', error);
+      throw error;
+    }
+  },
 };
 
 export default spotifyService;
