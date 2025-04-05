@@ -8,7 +8,7 @@ const SearchHeroSection: React.FC = () => {
         <br />
         <span className="text-[#D6F379]"> artistas</span>
       </h2>
-      <p className="text-base leading-relaxed font-light md:w-4/5 md:text-center lg:w-4/7 xl:w-3/7">
+      <p className="text-base leading-relaxed font-light md:w-4/5 md:text-center lg:w-4/7">
         Encuentra tus artistas favoritos gracias a nuestro buscador y guarda tus
         álbumes favoritos
       </p>

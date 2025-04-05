@@ -18,7 +18,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({
       <img
         src={imageUrl}
         alt={albumName}
-        className="mb-4 rounded-xl object-cover"
+        className="mb-4 h-44 max-h-44 w-44 max-w-44 rounded-xl object-cover"
       />
       <div className="self-start pt-2">
         <h3 className="text-3xl font-semibold lg:text-2xl">{albumName}</h3>

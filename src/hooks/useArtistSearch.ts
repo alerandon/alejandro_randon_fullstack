@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import spotifyService from '../services/spotifyService';
-
-interface Artist {
-  artistName: string;
-  followers: number;
-  imageUrl: string;
-}
+import { SpotifyArtistsResponse } from '../types/artists';
 
 const useArtistSearch = () => {
-  const [artists, setArtists] = useState<Artist[]>([]);
+  const [artists, setArtists] = useState<SpotifyArtistsResponse>();
 
   const searchArtists = async (query: string) => {
     const token = sessionStorage.getItem('spotifyAccess');
@@ -23,12 +18,24 @@ const useArtistSearch = () => {
         query,
         parsedToken.access_token,
       );
-      const formattedArtists = fetchedArtists.map((artist: any) => ({
-        artistName: artist.name,
-        followers: artist.followers.total,
-        imageUrl: artist.images[0]?.url || '',
-      }));
-      setArtists(formattedArtists);
+      const formattedArtists = fetchedArtists.items.map((artist: any) => {
+        const formattedName = artist.name.replace(/ /g, '+');
+        const finalImageUrl =
+          artist.images[0]?.url ||
+          `https://placehold.co/500/gray/white?text=${formattedName}`;
+
+        return {
+          artistName: artist.name,
+          followers: artist.followers.total,
+          imageUrl: finalImageUrl,
+        };
+      });
+      const formattedResponse = {
+        ...fetchedArtists,
+        items: formattedArtists,
+      };
+
+      setArtists(formattedResponse);
     } catch (error) {
       console.error('Error fetching artists:', error);
     }

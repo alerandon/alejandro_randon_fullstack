@@ -55,9 +55,21 @@ const spotifyService = {
   },
 
   getArtists: async (query: string, token: string) => {
+    if (!query) {
+      console.error('El parámetro de búsqueda (query) está vacío.');
+      throw new Error('El parámetro de búsqueda no puede estar vacío.');
+    }
+
+    if (!token) {
+      console.error('El token de acceso no está disponible.');
+      throw new Error(
+        'El token de acceso es requerido para realizar esta solicitud.',
+      );
+    }
+
     try {
       const response = await fetch(
-        `${SPOTIFY_API_BASE_URL}/search?q=${encodeURIComponent(query)}&type=artist`,
+        `${SPOTIFY_API_BASE_URL}/search?q=${encodeURIComponent(query)}&type=artist&limit=4`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -66,12 +78,16 @@ const spotifyService = {
       );
 
       if (!response.ok) {
-        throw new Error('Error al obtener la lista de artistas');
+        const errorData = await response.json();
+        console.error('Error en la respuesta de la API:', errorData);
+        throw new Error(
+          `Error al obtener la lista de artistas: ${response.status} ${response.statusText}`,
+        );
       }
 
       const data = await response.json();
-      console.log('Data:', data);
-      return data.artists.items;
+      console.log('Datos recibidos de la API:', data.artists);
+      return data.artists;
     } catch (error) {
       console.error('Error en getArtists:', error);
       throw error;
