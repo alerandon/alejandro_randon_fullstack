@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import ArtistDetail from '../components/artists/ArtistDetail';
+import ArtistDetailSection from '../components/artists/ArtistDetailSection';
 import useArtistById from '../hooks/useArtistById';
 import ArtistAlbumsListSection from '../components/artists/ArtistAlbumsListSection';
 
@@ -18,7 +18,7 @@ const ArtistDetailPage: React.FC = () => {
 
   return (
     <>
-      <ArtistDetail artist={artist} />
+      <ArtistDetailSection artist={artist} />
       <ArtistAlbumsListSection artist={artist} />
     </>
   );

@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React from 'react';
 import spotifyService from '../services/spotifyService';
 import { SpotifyArtistsSearch } from '../types/artists';
 
 const useArtistSearch = () => {
-  const [artists, setArtists] = useState<SpotifyArtistsSearch>();
+  const [artists, setArtists] = React.useState<SpotifyArtistsSearch>();
 
   const searchArtists = async (query: string, page: number = 1) => {
     const token = sessionStorage.getItem('spotifyAccess');

@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import spotifyService from '../services/spotifyService';
 import { SpotifyArtist } from '../types/artists';
 
 const useArtistById = (artistId: string) => {
-  const [artist, setArtist] = useState<SpotifyArtist>();
-  const [error, setError] = useState<string | null>(null);
+  const [artist, setArtist] = React.useState<SpotifyArtist>();
+  const [error, setError] = React.useState<string | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchArtist = async () => {
       const token = sessionStorage.getItem('spotifyAccess');
       if (!token) {

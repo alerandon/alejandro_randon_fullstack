@@ -8,6 +8,8 @@ const spotifyService = {
       'user-read-private',
       'user-read-email',
       'playlist-read-private',
+      'user-library-read',
+      'user-library-modify',
     ];
 
     if (!clientId || !redirectUri) {
@@ -115,6 +117,170 @@ const spotifyService = {
       return data;
     } catch (error) {
       console.error('Error en getArtistById:', error);
+      throw error;
+    }
+  },
+
+  getArtistAlbums: async (
+    artistId: string,
+    token: string,
+    page: number = 1,
+  ) => {
+    if (!artistId) {
+      console.error('El ID del artista está vacío.');
+      throw new Error('El ID del artista no puede estar vacío.');
+    }
+
+    if (!token) {
+      console.error('El token de acceso no está disponible.');
+      throw new Error(
+        'El token de acceso es requerido para realizar esta solicitud.',
+      );
+    }
+
+    try {
+      const limit = 8;
+      const offset = (page - 1) * limit;
+      const response = await fetch(
+        `${SPOTIFY_API_BASE_URL}/artists/${artistId}/albums?limit=${limit}&offset=${offset}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error en la respuesta de la API:', errorData);
+        throw new Error(
+          `Error al obtener los álbumes del artista: ${response.status} ${response.statusText}`,
+        );
+      }
+
+      const data = await response.json();
+      console.log('Álbumes recibidos de la API:', data);
+      return data;
+    } catch (error) {
+      console.error('Error en getArtistAlbums:', error);
+      throw error;
+    }
+  },
+
+  checkUserSavedAlbums: async (albumIds: string[], token: string) => {
+    if (!albumIds || albumIds.length === 0) {
+      console.error('No se proporcionaron IDs de álbumes para verificar.');
+      throw new Error('Se requiere al menos un ID de álbum para verificar.');
+    }
+
+    if (!token) {
+      console.error('El token de acceso no está disponible.');
+      throw new Error(
+        'El token de acceso es requerido para realizar esta solicitud.',
+      );
+    }
+
+    try {
+      const response = await fetch(
+        `${SPOTIFY_API_BASE_URL}/me/albums/contains?ids=${albumIds.join(',')}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error en la respuesta de la API:', errorData);
+        throw new Error(
+          `Error al verificar los álbumes guardados: ${response.status} ${response.statusText}`,
+        );
+      }
+
+      const data = await response.json();
+      console.log('Resultado de la verificación de álbumes guardados:', data);
+      return data;
+    } catch (error) {
+      console.error('Error en checkUserSavedAlbums:', error);
+      throw error;
+    }
+  },
+
+  removeUserSavedAlbums: async (albumIds: string[], token: string) => {
+    if (!albumIds || albumIds.length === 0) {
+      console.error('No se proporcionaron IDs de álbumes para eliminar.');
+      throw new Error('Se requiere al menos un ID de álbum para eliminar.');
+    }
+
+    if (!token) {
+      console.error('El token de acceso no está disponible.');
+      throw new Error(
+        'El token de acceso es requerido para realizar esta solicitud.',
+      );
+    }
+
+    try {
+      const response = await fetch(`${SPOTIFY_API_BASE_URL}/me/albums`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ids: albumIds }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error en la respuesta de la API:', errorData);
+        throw new Error(
+          `Error al eliminar los álbumes guardados: ${response.status} ${response.statusText}`,
+        );
+      }
+
+      console.log('Álbumes eliminados exitosamente.');
+      return true;
+    } catch (error) {
+      console.error('Error en removeUserSavedAlbums:', error);
+      throw error;
+    }
+  },
+
+  saveAlbumsForCurrentUser: async (albumIds: string[], token: string) => {
+    if (!albumIds || albumIds.length === 0) {
+      console.error('No se proporcionaron IDs de álbumes para guardar.');
+      throw new Error('Se requiere al menos un ID de álbum para guardar.');
+    }
+
+    if (!token) {
+      console.error('El token de acceso no está disponible.');
+      throw new Error(
+        'El token de acceso es requerido para realizar esta solicitud.',
+      );
+    }
+
+    try {
+      const response = await fetch(`${SPOTIFY_API_BASE_URL}/me/albums`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ids: albumIds }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error en la respuesta de la API:', errorData);
+        throw new Error(
+          `Error al guardar los álbumes: ${response.status} ${response.statusText}`,
+        );
+      }
+
+      console.log('Álbumes guardados exitosamente.');
+      return true;
+    } catch (error) {
+      console.error('Error en saveAlbumsForCurrentUser:', error);
       throw error;
     }
   },

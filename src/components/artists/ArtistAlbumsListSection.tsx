@@ -2,62 +2,7 @@ import React from 'react';
 import AlbumCard from '../albums/AlbumCard';
 import CardsPagination from '../common/CardsPagination';
 import { SpotifyArtist } from '../../types/artists';
-
-const albums = [
-  {
-    albumName: 'Taylor Swift',
-    publishedDate: '2023-01-01',
-    followers: 12000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-  {
-    albumName: 'Ed Sheeran',
-    publishedDate: '2023-01-01',
-    followers: 15000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-  {
-    albumName: 'Adele',
-    publishedDate: '2023-01-01',
-    followers: 18000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-  {
-    albumName: 'Billie Eilish',
-    publishedDate: '2023-01-01',
-    followers: 20000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-  {
-    albumName: 'Taylor Swift',
-    publishedDate: '2023-01-01',
-    followers: 12000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-  {
-    albumName: 'Ed Sheeran',
-    publishedDate: '2023-01-01',
-    followers: 15000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-  {
-    albumName: 'Adele',
-    publishedDate: '2023-01-01',
-    followers: 18000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-  {
-    albumName: 'Billie Eilish',
-    publishedDate: '2023-01-01',
-    followers: 20000000,
-    imageUrl: 'https://placehold.co/500',
-  },
-];
-
-const removeAlbum = () => {
-  // Logic to remove the album from the list
-  console.log(`Removing album...`);
-};
+import useArtistAlbums from '../../hooks/useArtistAlbums';
 
 interface ArtistAlbumsListProps {
   artist: SpotifyArtist;
@@ -66,14 +11,31 @@ interface ArtistAlbumsListProps {
 const ArtistAlbumsListSection: React.FC<ArtistAlbumsListProps> = ({
   artist,
 }) => {
-  const totalPages = 20;
+  const token = JSON.parse(
+    sessionStorage.getItem('spotifyAccess') || '{}',
+  ).access_token;
+
   const [currentPage, setCurrentPage] = React.useState(1);
+  const { albums, loading, error } = useArtistAlbums(
+    artist.id,
+    token,
+    currentPage,
+  );
+  const totalPages = albums ? Math.ceil(albums.total / albums.limit) : 1;
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
+
+  if (loading) {
+    return <p>Cargando álbumes...</p>;
+  }
+
+  if (error) {
+    return <p>Error al cargar los álbumes: {error}</p>;
+  }
 
   return (
     <div className="mt-8 md:mt-12 lg:mt-24">
@@ -82,15 +44,21 @@ const ArtistAlbumsListSection: React.FC<ArtistAlbumsListProps> = ({
       </p>
       <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">
         <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {albums.map((album, index) => (
-            <AlbumCard
-              key={index}
-              albumName={album.albumName}
-              publishedDate={album.publishedDate}
-              imageUrl={album.imageUrl}
-              onRemove={removeAlbum}
-            />
-          ))}
+          {albums && albums.items?.length > 0 ? (
+            albums.items.map((album, index) => (
+              <AlbumCard
+                key={index}
+                albumId={album.id}
+                albumName={album.name}
+                publishedDate={album.release_date}
+                imageUrl={album.images[0]?.url}
+              />
+            ))
+          ) : (
+            <p className="col-span-full my-10 text-center text-base text-[#D6F379]">
+              No se encontraron álbumes para este artista.
+            </p>
+          )}
         </div>
         <CardsPagination
           currentPage={currentPage}

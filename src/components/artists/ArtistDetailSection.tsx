@@ -2,11 +2,13 @@ import { CircleCheck, CircleCheckFill } from 'akar-icons';
 import React from 'react';
 import { SpotifyArtist } from '../../types/artists';
 
-interface ArtistCardProps {
+interface ArtistDetailSectionProps {
   artist: SpotifyArtist;
 }
 
-const ArtistDetail: React.FC<ArtistCardProps> = ({ artist }) => {
+const ArtistDetailSection: React.FC<ArtistDetailSectionProps> = ({
+  artist,
+}) => {
   const formattedName = artist?.name.replace(/ /g, '+');
   const artistImageUrl =
     artist?.images[0]?.url ||
@@ -44,4 +46,4 @@ const ArtistDetail: React.FC<ArtistCardProps> = ({ artist }) => {
   );
 };
 
-export default ArtistDetail;
+export default ArtistDetailSection;
