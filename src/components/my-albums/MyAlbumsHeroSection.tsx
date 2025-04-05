@@ -8,7 +8,7 @@ const MyAlbumsHeroSection: React.FC = () => {
         <br />
         <span className="text-[#D6F379]"> guardados</span>
       </h2>
-      <p className="text-sm leading-loose font-light md:w-4/5 md:text-center lg:w-3/5">
+      <p className="text-sm leading-loose font-light md:w-5/7 md:text-center lg:w-4/8 xl:w-4/10">
         Disfruta de tu música a un solo click y descube que discos has guardado
         dentro de “mis álbumes”
       </p>

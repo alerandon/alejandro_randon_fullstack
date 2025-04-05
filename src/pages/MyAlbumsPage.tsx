@@ -6,7 +6,9 @@ const MyAlbumsPage: React.FC = () => {
   return (
     <>
       <MyAlbumsHeroSection />
-      <MyAlbumsListSection />
+      <div className="mt-12 md:mt-18">
+        <MyAlbumsListSection />
+      </div>
     </>
   );
 };
