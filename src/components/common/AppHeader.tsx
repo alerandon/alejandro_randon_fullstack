@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParentElementProps } from '../types/interfaces';
+import { ParentElementProps } from '../../types/interfaces';
 
 const AppHeader: React.FC<ParentElementProps> = ({ children }) => {
   return (

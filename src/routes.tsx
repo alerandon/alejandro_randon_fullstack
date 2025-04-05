@@ -26,7 +26,7 @@ const AppRoutes: React.FC = () => {
             }
           />
           <Route
-            path="artist/:id"
+            path="artists/:id"
             element={
               <UserLayout>
                 <ArtistDetailPage />
