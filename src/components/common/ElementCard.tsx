@@ -21,9 +21,7 @@ const ElementCard: React.FC<ElementCardProps> = ({
   imageUrl,
   linkTo,
   onPrimaryAction,
-  onSecondaryAction,
   primaryActionLabel,
-  secondaryActionLabel,
   isActionable = false,
 }) => {
   const formattedName = title.replace(/ /g, '+');
@@ -46,17 +44,13 @@ const ElementCard: React.FC<ElementCardProps> = ({
           {onPrimaryAction && primaryActionLabel && (
             <button
               onClick={onPrimaryAction}
-              className="w-full cursor-pointer rounded-full bg-[#4CAF50] px-4 py-2 text-sm font-semibold text-white lg:text-xs"
+              className={`w-full cursor-pointer rounded-full px-4 py-2 text-sm font-semibold text-white lg:text-xs ${
+                primaryActionLabel === '- Remover album'
+                  ? 'bg-[#E3513D]'
+                  : 'bg-[#4CAF50]'
+              }`}
             >
               {primaryActionLabel}
-            </button>
-          )}
-          {onSecondaryAction && secondaryActionLabel && (
-            <button
-              onClick={onSecondaryAction}
-              className="w-full cursor-pointer rounded-full bg-[#E3513D] px-4 py-2 text-sm font-semibold text-white lg:text-xs"
-            >
-              {secondaryActionLabel}
             </button>
           )}
         </div>
