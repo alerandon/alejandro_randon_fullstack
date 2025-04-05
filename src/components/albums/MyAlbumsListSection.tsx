@@ -1,6 +1,6 @@
 import React from 'react';
-import AlbumCard from '../cards/AlbumCard';
-import CardsPagination from '../cards/CardsPagination';
+import AlbumCard from './AlbumCard';
+import CardsPagination from '../common/CardsPagination';
 
 const albums = [
   {

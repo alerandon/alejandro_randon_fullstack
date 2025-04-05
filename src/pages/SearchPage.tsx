@@ -1,6 +1,6 @@
 import React from 'react';
-import ArtistSearcherSection from '../components/searcher/ArtistSearcherSection';
-import SearcherHeroSection from '../components/searcher/SearcherHeroSection';
+import ArtistSearchSection from '../components/search/ArtistSearchSection';
+import SearchHeroSection from '../components/search/SearchHeroSection';
 
 const SearchPage: React.FC = () => {
   const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
@@ -17,31 +17,13 @@ const SearchPage: React.FC = () => {
       return;
     }
 
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch(`${SPOTIFY_API_URL}/me`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error('Error fetching profile:', error);
-      }
-    };
-    // fetchProfile();
-
     isProcessed.current = true;
   }, [ACCESS_TOKEN_OBJECT]);
 
   return (
     <>
-      <SearcherHeroSection />
-      <ArtistSearcherSection />
+      <SearchHeroSection />
+      <ArtistSearchSection />
     </>
   );
 };

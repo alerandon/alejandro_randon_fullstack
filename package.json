@@ -1,5 +1,5 @@
 {
-  "name": "parcel-react-client-starter",
+  "name": "alejandro_randon_fullstack",
   "private": true,
   "version": "0.0.0",
   "source": "src/index.html",
@@ -29,7 +29,6 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "svgo": "^3.3.2",

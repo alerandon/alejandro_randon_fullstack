@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { authSpotifyAccount } from '../../services/spotifyAuthService';
+import spotifyService from '../services/spotifyService';
 
 const SpotifyCallback = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const SpotifyCallback = () => {
     const authCodeParam = urlParams.get('code');
     const authUserBeforeRedirect = async (authCode: string) => {
       try {
-        await authSpotifyAccount(authCode);
+        await spotifyService.authAccount(authCode);
         navigate('/search');
       } catch (error) {
         console.error('Error al procesar el código de autorización:', error);

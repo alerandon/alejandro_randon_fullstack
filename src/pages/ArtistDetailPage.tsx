@@ -1,5 +1,5 @@
 import React from 'react';
-import MyAlbumsListSection from '../components/my-albums/MyAlbumsListSection';
+import MyAlbumsListSection from '../components/albums/MyAlbumsListSection';
 import ArtistDetail from '../components/artists/ArtistDetail';
 
 const ArtistDetailPage: React.FC = () => {

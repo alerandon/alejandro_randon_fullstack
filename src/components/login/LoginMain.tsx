@@ -1,7 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'akar-icons';
 import DiagonalArrow from '../../assets/icons/DiagonalArrow.svg?react';
-import { redirectToSpotifyLogin } from '../../services/spotifyAuthService';
 import LoginHero from './LoginHero';
 
 const LoginMain: React.FC = () => {

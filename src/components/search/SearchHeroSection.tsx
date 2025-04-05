@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearcherHeroSection: React.FC = () => {
+const SearchHeroSection: React.FC = () => {
   return (
     <div className="flex w-full flex-col items-center justify-center gap-8">
       <h2 className="w-full text-4xl leading-tight font-bold md:text-center md:text-5xl">
@@ -16,4 +16,4 @@ const SearcherHeroSection: React.FC = () => {
   );
 };
 
-export default SearcherHeroSection;
+export default SearchHeroSection;

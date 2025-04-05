@@ -1,5 +1,5 @@
 import React from 'react';
-import { redirectToSpotifyLogin } from '../../services/spotifyAuthService';
+import spotifyService from '../../services/spotifyService';
 import { ArrowRight } from 'akar-icons';
 
 const LoginHero: React.FC = () => {
@@ -17,7 +17,7 @@ const LoginHero: React.FC = () => {
       </p>
       <div className="flex h-fit w-fit justify-between gap-8 md:mt-20 lg:mt-10">
         <button
-          onClick={redirectToSpotifyLogin}
+          onClick={spotifyService.redirectToLogin}
           className="cursor-pointer text-base font-semibold hover:underline md:text-lg"
         >
           Log in con Spotify

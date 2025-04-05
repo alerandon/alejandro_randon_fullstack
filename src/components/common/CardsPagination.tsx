@@ -16,7 +16,7 @@ const CardsPagination: React.FC<{
     const start = Math.max(1, currentPage - 2);
     const end = Math.min(totalPages, currentPage + 2);
 
-    const visiblePages = pages.slice(start - 1, end);
+    const visiblePages: (number | string)[] = pages.slice(start - 1, end);
 
     if (start > 1) {
       visiblePages.unshift('...');

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import UserLayout from './components/user/UserLayout';
-import MyAlbumsPage from './pages/MyAlbumsPage';
-import ArtistDetailPage from './pages/ArtistDetailPage';
 
 const LoginPage = React.lazy(() => import('./pages/LoginPage'));
+const SpotifyCallback = React.lazy(() => import('./pages/SpotifyCallback'));
 const SearchPage = React.lazy(() => import('./pages/SearchPage'));
-const SpotifyCallback = React.lazy(
-  () => import('./components/callback/SpotifyCallback'),
-);
+const ArtistDetailPage = React.lazy(() => import('./pages/ArtistDetailPage'));
+const MyAlbumsPage = React.lazy(() => import('./pages/MyAlbumsPage'));
 
 const AppRoutes: React.FC = () => {
   return (
@@ -16,6 +14,7 @@ const AppRoutes: React.FC = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/spotify/callback" element={<SpotifyCallback />} />
+
         <Route path="/search">
           <Route
             index
@@ -34,6 +33,7 @@ const AppRoutes: React.FC = () => {
             }
           />
         </Route>
+
         <Route
           path="/my-albums"
           element={
