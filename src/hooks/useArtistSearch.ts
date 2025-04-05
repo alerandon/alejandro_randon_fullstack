@@ -5,7 +5,7 @@ import { SpotifyArtistsResponse } from '../types/artists';
 const useArtistSearch = () => {
   const [artists, setArtists] = useState<SpotifyArtistsResponse>();
 
-  const searchArtists = async (query: string) => {
+  const searchArtists = async (query: string, page: number = 1) => {
     const token = sessionStorage.getItem('spotifyAccess');
     if (!token) {
       console.error('No access token found');
@@ -16,8 +16,10 @@ const useArtistSearch = () => {
       const parsedToken = JSON.parse(token);
       const fetchedArtists = await spotifyService.getArtists(
         query,
+        page,
         parsedToken.access_token,
       );
+
       const formattedArtists = fetchedArtists.items.map((artist: any) => {
         const formattedName = artist.name.replace(/ /g, '+');
         const finalImageUrl =

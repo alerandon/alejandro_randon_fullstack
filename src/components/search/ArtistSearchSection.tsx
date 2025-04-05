@@ -6,7 +6,7 @@ import useArtistSearch from '../../hooks/useArtistSearch';
 const ArtistSearchSection: React.FC = () => {
   const { artists, searchArtists } = useArtistSearch();
 
-  const totalPages = 20;
+  const totalPages = artists ? Math.ceil(artists.total / artists.limit) : 1;
   const [currentPage, setCurrentPage] = React.useState(1);
   const searchValue = useRef<string>('');
 
@@ -17,12 +17,13 @@ const ArtistSearchSection: React.FC = () => {
   };
 
   const handleSearch = (query: string) => {
+    if (currentPage > 1) setCurrentPage(1);
     searchArtists(query);
   };
 
   useEffect(() => {
     if (searchValue.current) {
-      searchArtists(searchValue.current);
+      searchArtists(searchValue.current, currentPage);
     }
   }, [currentPage]);
 
@@ -76,11 +77,13 @@ const ArtistSearchSection: React.FC = () => {
           )}
         </div>
       </div>
-      <CardsPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {artists && (
+        <CardsPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 };

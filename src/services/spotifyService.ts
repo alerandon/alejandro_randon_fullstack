@@ -54,7 +54,7 @@ const spotifyService = {
     return data;
   },
 
-  getArtists: async (query: string, token: string) => {
+  getArtists: async (query: string, page: number = 1, token: string) => {
     if (!query) {
       console.error('El parámetro de búsqueda (query) está vacío.');
       throw new Error('El parámetro de búsqueda no puede estar vacío.');
@@ -68,8 +68,10 @@ const spotifyService = {
     }
 
     try {
+      const limit = 4;
+      const offset = (page - 1) * limit;
       const response = await fetch(
-        `${SPOTIFY_API_BASE_URL}/search?q=${encodeURIComponent(query)}&type=artist&limit=4`,
+        `${SPOTIFY_API_BASE_URL}/search?q=${encodeURIComponent(query)}&type=artist&limit=${limit}&offset=${offset}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
