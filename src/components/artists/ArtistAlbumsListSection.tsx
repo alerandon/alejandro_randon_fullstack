@@ -1,6 +1,7 @@
 import React from 'react';
-import AlbumCard from './AlbumCard';
+import AlbumCard from '../albums/AlbumCard';
 import CardsPagination from '../common/CardsPagination';
+import { SpotifyArtist } from '../../types/artists';
 
 const albums = [
   {
@@ -58,7 +59,13 @@ const removeAlbum = () => {
   console.log(`Removing album...`);
 };
 
-const MyAlbumsListSection: React.FC = () => {
+interface ArtistAlbumsListProps {
+  artist: SpotifyArtist;
+}
+
+const ArtistAlbumsListSection: React.FC<ArtistAlbumsListProps> = ({
+  artist,
+}) => {
   const totalPages = 20;
   const [currentPage, setCurrentPage] = React.useState(1);
 
@@ -69,15 +76,18 @@ const MyAlbumsListSection: React.FC = () => {
   };
 
   return (
-    <div className="mt-12 flex w-full flex-col items-center md:mt-18">
+    <div className="mt-8 md:mt-12 lg:mt-24">
+      <p className="mb-3 text-sm leading-loose font-light md:w-4/5 md:pl-5 lg:w-3/5">
+        Guarda tus albumes favoritos de {artist.name}
+      </p>
       <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">
         <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {albums.map((artist, index) => (
+          {albums.map((album, index) => (
             <AlbumCard
               key={index}
-              albumName={artist.albumName}
-              publishedDate={artist.publishedDate}
-              imageUrl={artist.imageUrl}
+              albumName={album.albumName}
+              publishedDate={album.publishedDate}
+              imageUrl={album.imageUrl}
               onRemove={removeAlbum}
             />
           ))}
@@ -92,4 +102,4 @@ const MyAlbumsListSection: React.FC = () => {
   );
 };
 
-export default MyAlbumsListSection;
+export default ArtistAlbumsListSection;

@@ -6,9 +6,7 @@ const MyAlbumsPage: React.FC = () => {
   return (
     <>
       <MyAlbumsHeroSection />
-      <div className="mt-12 flex w-full flex-col items-center md:mt-18">
-        <MyAlbumsListSection />
-      </div>
+      <MyAlbumsListSection />
     </>
   );
 };

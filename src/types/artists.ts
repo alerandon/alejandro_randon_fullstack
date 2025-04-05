@@ -1,15 +1,21 @@
-interface SpotifyFormattedArtist {
-  artistName: string;
-  followers: number;
-  imageUrl: string;
-}
-
-export interface SpotifyArtistsResponse {
+export interface SpotifyArtistsSearch {
   href: string;
-  items: SpotifyFormattedArtist[];
+  items: SpotifyArtist[];
   limit: number;
   next: string | null;
   offset: number;
   previous: string | null;
   total: number;
+}
+
+export interface SpotifyArtist {
+  id: string;
+  name: string;
+  followers: {
+    total: number;
+  };
+  images: Array<{
+    url: string;
+  }>;
+  popularity: number;
 }

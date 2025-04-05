@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import CardsPagination from '../common/CardsPagination';
 import ArtistCard from '../artists/ArtistCard';
 import useArtistSearch from '../../hooks/useArtistSearch';
@@ -8,7 +8,7 @@ const ArtistSearchSection: React.FC = () => {
 
   const totalPages = artists ? Math.ceil(artists.total / artists.limit) : 1;
   const [currentPage, setCurrentPage] = React.useState(1);
-  const searchValue = useRef<string>('');
+  const searchValue = React.useRef<string>('');
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -21,7 +21,7 @@ const ArtistSearchSection: React.FC = () => {
     searchArtists(query);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (searchValue.current) {
       searchArtists(searchValue.current, currentPage);
     }
@@ -65,9 +65,10 @@ const ArtistSearchSection: React.FC = () => {
             artists.items.map((artist, index) => (
               <ArtistCard
                 key={index}
-                artistName={artist.artistName}
-                followers={artist.followers}
-                imageUrl={artist.imageUrl}
+                id={artist.id}
+                artistName={artist.name}
+                followers={artist.followers.total}
+                imageUrl={artist.images[0]?.url}
               />
             ))
           ) : (

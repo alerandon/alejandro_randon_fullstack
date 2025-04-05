@@ -2,17 +2,23 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const ArtistCard: React.FC<{
+  id: string;
   artistName: string;
   followers: number;
   imageUrl: string;
-}> = ({ artistName, followers, imageUrl }) => {
+}> = ({ id, artistName, followers, imageUrl }) => {
+  const linkTo = `/search/artists/${id}`;
+  const formattedName = artistName.replace(/ /g, '+');
+  const finalImageUrl =
+    imageUrl || `https://placehold.co/500/gray/white?text=${formattedName}`;
+
   return (
     <Link
-      to="/search/artists/10"
+      to={linkTo}
       className="flex flex-col items-center rounded-3xl bg-transparent p-7 text-white hover:bg-[#D6F379] hover:text-gray-900 md:p-5"
     >
       <img
-        src={imageUrl}
+        src={finalImageUrl}
         alt={artistName}
         className="mb-4 h-44 max-h-44 w-44 max-w-44 rounded-xl object-fill"
       />

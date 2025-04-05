@@ -1,21 +1,36 @@
 import React from 'react';
-import MyAlbumsListSection from '../components/albums/MyAlbumsListSection';
+import { useParams } from 'react-router';
 import ArtistDetail from '../components/artists/ArtistDetail';
+import useArtistById from '../hooks/useArtistById';
+import ArtistAlbumsListSection from '../components/artists/ArtistAlbumsListSection';
 
 const ArtistDetailPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { artist, error } = useArtistById(id || '');
+
+  const formattedName = artist?.name.replace(/ /g, '+');
+  const artistImageUrl =
+    artist?.images[0]?.url ||
+    `https://placehold.co/500/gray/white?text=${formattedName}`;
+  console.log('ArtistDetailPage: ', artist);
+
+  if (error) {
+    return <p className="text-red-500">Error: {error}</p>;
+  }
+
+  if (!artist) {
+    return <p>Cargando información del artista...</p>;
+  }
+
   return (
     <>
       <ArtistDetail
-        artistName="Nombre del Artista"
-        followers={123456}
-        monthlyListeners={7890}
+        artistName={artist.name}
+        artistImage={artistImageUrl}
+        followers={artist.followers.total}
+        monthlyListeners={artist.popularity}
       />
-      <div className="mt-8 md:mt-12 lg:mt-24">
-        <p className="mb-3 text-sm leading-loose font-light md:w-4/5 md:pl-5 lg:w-3/5">
-          Guarda tus albumes favoritos de {'ARTISTA'}
-        </p>
-        <MyAlbumsListSection />
-      </div>
+      <ArtistAlbumsListSection artist={artist} />
     </>
   );
 };
