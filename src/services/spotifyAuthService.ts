@@ -43,7 +43,7 @@ export const authSpotifyAccount = async (authCode: string) => {
 
     data = await response.json();
     const jsonData = JSON.stringify(data);
-    sessionStorage.setItem('spotifyAccessToken', jsonData);
+    sessionStorage.setItem('spotifyAccess', jsonData);
   } catch (error) {
     console.error('Error exchanging authorization code for token:', error);
   }

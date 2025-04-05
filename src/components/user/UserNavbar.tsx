@@ -1,21 +1,43 @@
-import { Awake, Logout } from '@carbon/icons-react';
+import { Logout } from '@carbon/icons-react';
 import React from 'react';
+import { Link, useNavigate } from 'react-router';
 
 const UserNavbar: React.FC = () => {
+  const navigate = useNavigate();
+  const searchPathname = '/search';
+  const myAlbumsPathname = '/my-albums';
+
+  const handleLinkTextColor = (link: string) => {
+    const textColor =
+      window.location.pathname === link ? 'text-[#D6F379]' : 'text-white';
+    return textColor;
+  };
+  const handleLogout = () => {
+    localStorage.removeItem('spotifyAccess');
+    navigate('/');
+  };
+
   return (
     <nav className="flex items-center">
-      <p className="pr-1.5 text-[12px] font-medium text-[#D6F379] sm:pr-2 sm:text-xs lg:text-sm">
+      <Link
+        to={searchPathname}
+        className={`pr-1.5 text-[12px] font-medium sm:pr-2 sm:text-xs lg:text-sm ${handleLinkTextColor(searchPathname)}`}
+      >
         Buscar
-      </p>
-      <p className="pr-3 pl-1.5 text-[12px] font-medium text-nowrap sm:px-4 sm:text-xs lg:text-sm">
+      </Link>
+      <Link
+        to={myAlbumsPathname}
+        className={`pr-3 pl-1.5 text-[12px] font-medium text-nowrap sm:px-4 sm:text-xs lg:text-sm ${handleLinkTextColor(myAlbumsPathname)}`}
+      >
         Mis albumes
-      </p>
-      <div className="h4 flex h-5 items-center border-l-1 border-white pl-3 sm:px-4">
+      </Link>
+
+      <button
+        onClick={handleLogout}
+        className="h4 flex h-5 items-center border-l-1 border-white pl-3 sm:px-4"
+      >
         <Logout className="h-full w-full" />
-      </div>
-      {/* <div className="flex h-2/3 items-center border-l-1 border-white px-1.5 sm:px-4">
-        <Awake className="h-full w-full" />
-      </div> */}
+      </button>
     </nav>
   );
 };

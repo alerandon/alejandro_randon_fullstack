@@ -4,7 +4,7 @@ import SearcherHeroSection from '../components/searcher/SearcherHeroSection';
 
 const SearchPage: React.FC = () => {
   const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
-  const sessionToken = sessionStorage.getItem('spotifyAccessToken') ?? '';
+  const sessionToken = sessionStorage.getItem('spotifyAccess') ?? '';
   const ACCESS_TOKEN_OBJECT = sessionToken ? JSON.parse(sessionToken) : null;
   const isProcessed = React.useRef(false);
 
