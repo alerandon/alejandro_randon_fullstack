@@ -18,9 +18,8 @@ const useSaveAlbumsForCurrentUser = (token: string) => {
       console.error(err);
     } finally {
       setLoading(false);
+      return success;
     }
-
-    return success;
   };
 
   return { saveAlbum, loading, error };

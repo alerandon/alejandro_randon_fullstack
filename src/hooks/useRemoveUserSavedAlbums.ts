@@ -18,9 +18,8 @@ const useRemoveUserSavedAlbums = (token: string) => {
       console.error(err);
     } finally {
       setLoading(false);
+      return success;
     }
-
-    return success;
   };
 
   return { removeAlbum, loading, error };
