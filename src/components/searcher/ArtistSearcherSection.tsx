@@ -36,7 +36,7 @@ const ArtistSearcherSection: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">
+    <div className="mx-auto mt-8 flex w-full flex-col items-center gap-12 md:mt-20 lg:mt-10 lg:gap-20">
       <div className="flex w-full items-center rounded-full bg-white px-4 py-2 shadow-md lg:w-3/4">
         <input
           type="text"
