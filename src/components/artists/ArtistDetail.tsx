@@ -1,24 +1,22 @@
 import { CircleCheck, CircleCheckFill } from 'akar-icons';
 import React from 'react';
+import { SpotifyArtist } from '../../types/artists';
 
 interface ArtistCardProps {
-  artistName: string;
-  artistImage: string;
-  followers: number;
-  monthlyListeners: number;
+  artist: SpotifyArtist;
 }
 
-const ArtistDetail: React.FC<ArtistCardProps> = ({
-  artistName,
-  artistImage,
-  followers,
-  monthlyListeners,
-}) => {
+const ArtistDetail: React.FC<ArtistCardProps> = ({ artist }) => {
+  const formattedName = artist?.name.replace(/ /g, '+');
+  const artistImageUrl =
+    artist?.images[0]?.url ||
+    `https://placehold.co/500/gray/white?text=${formattedName}`;
+
   return (
     <div className="mb-10 flex w-full flex-col items-start text-white md:mb-0 md:flex-row md:items-center md:justify-start md:gap-12 md:pl-5">
       <div className="flex h-full flex-col items-center justify-center">
         <img
-          src={artistImage}
+          src={artistImageUrl}
           alt="albumName"
           className="rounded-full object-cover"
         />
@@ -31,14 +29,14 @@ const ArtistDetail: React.FC<ArtistCardProps> = ({
           <h5 className="text-sm font-medium">Artista certificado</h5>
         </div>
         <h3 className="mt-1.5 text-4xl font-semibold lg:text-5xl">
-          {artistName}
+          {artist.name}
         </h3>
         <div className="mt-10">
           <p className="mt-4 text-sm font-semibold lg:text-xs">
-            Followers: {followers.toLocaleString()}
+            Followers: {artist.followers.total.toLocaleString()}
           </p>
           <p className="mt-1.5 text-sm font-semibold lg:text-xs">
-            Oyentes mensuales: {monthlyListeners.toLocaleString()}
+            Oyentes mensuales: {artist.popularity.toLocaleString()}
           </p>
         </div>
       </div>
