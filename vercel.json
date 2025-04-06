@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/spotify/callback",
+      "destination": "https://alejandro-randon-fullstack.vercel.app/spotify/callback",
+      "permanent": false
+    }
+  ]
+}
