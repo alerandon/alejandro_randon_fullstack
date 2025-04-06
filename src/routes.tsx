@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
-import UserLayout from './components/user/UserLayout';
+import UserLayout from './components/users/UserLayout';
 
 const LoginPage = React.lazy(() => import('./pages/home/LoginPage'));
 const SpotifyCallback = React.lazy(

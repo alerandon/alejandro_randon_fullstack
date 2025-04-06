@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router';
-import UserLogout from '../../../components/user/UserLogout';
+import UserLogout from '../../../components/users/UserLogout';
 
 describe('UserLogout', () => {
   it('should render the logout button correctly', () => {

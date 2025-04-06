@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import UserLayout from '../../../components/user/UserLayout';
+import UserLayout from '../../../components/users/UserLayout';
 import { BrowserRouter } from 'react-router';
 
 describe('UserLayout', () => {
