@@ -29,8 +29,6 @@ const MyAlbumsListSection: React.FC = () => {
     );
   }
 
-  console.log('Albums:', albums);
-
   return (
     <div className="mt-12 flex w-full flex-col items-center md:mt-18">
       <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">

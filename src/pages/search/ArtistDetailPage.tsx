@@ -10,7 +10,6 @@ const ArtistDetailPage: React.FC = () => {
 
   const { id } = useParams<{ id: string }>();
   const { artist, error } = useArtistById(id || '');
-  console.log('ArtistDetailPage: ', artist);
 
   if (error) {
     return <p className="text-red-500">Error: {error}</p>;

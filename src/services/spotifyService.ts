@@ -152,8 +152,6 @@ const spotifyService = {
       }
 
       const data = await response.json();
-      console.log('Artista recibido de la API:', data);
-
       const formattedName = data.name?.replace(/ /g, '+');
       const artistImageUrl =
         data?.images[0]?.url ||
@@ -166,8 +164,6 @@ const spotifyService = {
         followers: data.followers?.total || 0,
         popularityScore: data.popularity || 0,
       };
-
-      console.log('Artista procesado de la API:', parsedData);
 
       return parsedData;
     } catch (error) {
@@ -214,7 +210,6 @@ const spotifyService = {
       }
 
       const data = await response.json();
-      console.log('Álbumes recibidos de la API:', data);
       const parsedItems = data.items.map((data: any): SpotifyAlbum => {
         const formattedName = data?.name.replace(/ /g, '+');
         const albumImageUrl =
@@ -233,7 +228,6 @@ const spotifyService = {
         items: parsedItems,
       };
 
-      console.log('Álbumes procesados de la API:', parsedData);
       return parsedData;
     } catch (error) {
       console.error('Error en getArtistAlbums:', error);
@@ -273,7 +267,6 @@ const spotifyService = {
       }
 
       const data = await response.json();
-      console.log('Resultado de la verificación de álbumes guardados:', data);
       return data;
     } catch (error) {
       console.error('Error en checkUserSavedAlbums:', error);
@@ -312,7 +305,6 @@ const spotifyService = {
         );
       }
 
-      console.log('Álbumes eliminados exitosamente.');
       return true;
     } catch (error) {
       console.error('Error en removeUserSavedAlbums:', error);
@@ -351,7 +343,6 @@ const spotifyService = {
         );
       }
 
-      console.log('Álbumes guardados exitosamente.');
       return true;
     } catch (error) {
       console.error('Error en saveAlbumsForCurrentUser:', error);
@@ -409,8 +400,6 @@ const spotifyService = {
         items: parsedItems,
       };
 
-      console.log('Álbumes guardados recibidos de la API:', data);
-      console.log('Álbumes guardados procesados de la API:', parsedData);
       return parsedData;
     } catch (error) {
       console.error('Error en getUserSavedAlbums:', error);

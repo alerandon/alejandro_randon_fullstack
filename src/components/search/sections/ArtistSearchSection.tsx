@@ -38,7 +38,6 @@ const ArtistSearchSection: React.FC = () => {
     );
   }
 
-  console.log('Artists:', artists);
   return (
     <div className="mx-auto mt-8 flex w-full flex-col items-center gap-12 md:mt-20 lg:mt-10 lg:gap-20">
       <SearchInput searchValue={searchValue} onSearch={handleSearch} />

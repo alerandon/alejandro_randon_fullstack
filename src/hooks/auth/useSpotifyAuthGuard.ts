@@ -6,7 +6,6 @@ dayjs.extend(isSameOrAfter);
 
 const useSpotifyAuthGuard = () => {
   const sessionToken = sessionStorage.getItem('spotifyAccess') ?? '';
-  console.log('sessionToken: ', sessionToken);
   const ACCESS_TOKEN_OBJECT = sessionToken ? JSON.parse(sessionToken) : null;
   const isProcessed = useRef(false);
   const navigate = useNavigate();

@@ -12,7 +12,6 @@ const useSaveAlbumsForCurrentUser = (token: string) => {
 
     try {
       success = await spotifyService.saveAlbumsForCurrentUser([albumId], token);
-      console.log(`Álbum con ID ${albumId} guardado exitosamente.`);
     } catch (err) {
       setError('Error al guardar el álbum.');
       console.error(err);

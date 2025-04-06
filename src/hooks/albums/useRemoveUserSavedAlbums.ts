@@ -12,7 +12,6 @@ const useRemoveUserSavedAlbums = (token: string) => {
 
     try {
       success = await spotifyService.removeUserSavedAlbums([albumId], token);
-      console.log(`Álbum con ID ${albumId} eliminado exitosamente.`);
     } catch (err) {
       setError('Error al eliminar el álbum guardado.');
       console.error(err);
