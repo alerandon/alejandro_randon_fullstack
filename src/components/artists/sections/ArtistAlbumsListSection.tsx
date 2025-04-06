@@ -48,12 +48,7 @@ const ArtistAlbumsListSection: React.FC<ArtistAlbumsListProps> = ({
       </p>
       <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">
         <AlbumGrid
-          albums={albums.items.map((album) => ({
-            id: album.id,
-            name: album.name,
-            release_date: album.release_date,
-            images: album.images,
-          }))}
+          albums={albums?.items!}
           emptyMessage="No se encontraron álbumes para este artista."
         />
         <CardsPagination
