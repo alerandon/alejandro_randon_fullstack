@@ -4,10 +4,12 @@ import { SpotifyAlbum, SpotifyAlbumsPagination } from '../types/albums';
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 
+const clientId = process.env.VITE_SPOTIFY_API_CLIENT_ID;
+const clientSecret = process.env.VITE_SPOTIFY_API_CLIENT_SECRET;
+const redirectUri = process.env.VITE_SPOTIFY_API_REDIRECT_URI;
+
 const spotifyService = {
   redirectToLogin: () => {
-    const clientId = import.meta.env.VITE_SPOTIFY_API_CLIENT_ID;
-    const redirectUri = import.meta.env.VITE_SPOTIFY_API_REDIRECT_URI;
     const scopes = [
       'user-read-private',
       'user-read-email',
@@ -36,12 +38,12 @@ const spotifyService = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: `Basic ${btoa(`${import.meta.env.VITE_SPOTIFY_API_CLIENT_ID}:${import.meta.env.VITE_SPOTIFY_API_CLIENT_SECRET}`)}`,
+          Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
         },
         body: new URLSearchParams({
           grant_type: 'authorization_code',
           code: authCode,
-          redirect_uri: import.meta.env.VITE_SPOTIFY_API_REDIRECT_URI || '',
+          redirect_uri: redirectUri || '',
         }),
       });
 
@@ -418,3 +420,4 @@ const spotifyService = {
 };
 
 export default spotifyService;
+export { clientId, clientSecret, redirectUri };

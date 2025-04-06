@@ -1,14 +1,32 @@
 import { CircleCheckFill } from 'akar-icons';
 import React from 'react';
-import { SpotifyArtist } from '../../../types/artists';
+import useArtistById from '../../../hooks/artists/useArtistById';
 
 interface ArtistDetailSectionProps {
-  artist: SpotifyArtist;
+  artistId: string;
 }
 
 const ArtistDetailSection: React.FC<ArtistDetailSectionProps> = ({
-  artist,
+  artistId,
 }) => {
+  const { artist, error, loading } = useArtistById(artistId);
+
+  if (loading) {
+    return (
+      <div className="text-[#D6F379]">Cargando detalles del artista...</div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-red-500">Error loading artist details: {error}</div>
+    );
+  }
+
+  if (!artist) {
+    return <div className="text-gray-500">No artist details available.</div>;
+  }
+
   return (
     <div className="mb-10 flex w-full flex-col items-start text-white md:mb-0 md:flex-row md:items-center md:justify-start md:gap-12 md:pl-5">
       <div className="flex h-full flex-col items-center justify-center">

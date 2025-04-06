@@ -5,6 +5,7 @@ import { SpotifyArtist } from '../../types/artists';
 const useArtistById = (artistId: string) => {
   const [artist, setArtist] = React.useState<SpotifyArtist>();
   const [error, setError] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const fetchArtist = async () => {
@@ -14,6 +15,7 @@ const useArtistById = (artistId: string) => {
         return;
       }
 
+      setLoading(true);
       try {
         const parsedToken = JSON.parse(token);
         const fetchedArtist = await spotifyService.getArtistById(
@@ -24,6 +26,8 @@ const useArtistById = (artistId: string) => {
       } catch (err) {
         setError('Error fetching artist');
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -32,7 +36,7 @@ const useArtistById = (artistId: string) => {
     }
   }, [artistId]);
 
-  return { artist, error };
+  return { artist, error, loading };
 };
 
 export default useArtistById;
