@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import ArtistDetailSection from '../components/artists/ArtistDetailSection';
+import ArtistDetailSection from '../components/artists/sections/ArtistDetailSection';
 import useArtistById from '../hooks/useArtistById';
-import ArtistAlbumsListSection from '../components/artists/ArtistAlbumsListSection';
+import ArtistAlbumsListSection from '../components/artists/sections/ArtistAlbumsListSection';
 
 const ArtistDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

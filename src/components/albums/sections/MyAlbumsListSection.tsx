@@ -1,7 +1,8 @@
 import React from 'react';
-import AlbumCard from './AlbumCard';
-import CardsPagination from '../common/CardsPagination';
-import useUserSavedAlbums from '../../hooks/useUserSavedAlbums';
+import AlbumCard from '../AlbumCard';
+import CardsPagination from '../../common/CardsPagination';
+import useUserSavedAlbums from '../../../hooks/useUserSavedAlbums';
+import AlbumGrid from '../../common/AlbumGrid';
 
 const MyAlbumsListSection: React.FC = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -19,26 +20,28 @@ const MyAlbumsListSection: React.FC = () => {
   };
 
   if (loading) {
-    return <div>Cargando álbumes...</div>;
+    return <div className="mt-20 text-[#D6F379]">Cargando álbumes...</div>;
   }
   if (error) {
-    return <div>Error al cargar los álbumes: {error}</div>;
+    return (
+      <div className="mt-20 text-[#D6F379]">
+        Error al cargar los álbumes: {error}
+      </div>
+    );
   }
 
   return (
     <div className="mt-12 flex w-full flex-col items-center md:mt-18">
       <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">
-        <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {albums.items.map((album, index) => (
-            <AlbumCard
-              key={index}
-              albumId={album.album.id}
-              albumName={album.album.name}
-              publishedDate={album.album.release_date}
-              imageUrl={album.album.images[0]?.url}
-            />
-          ))}
-        </div>
+        <AlbumGrid
+          albums={albums.items.map((album) => ({
+            id: album.album.id,
+            name: album.album.name,
+            release_date: album.album.release_date,
+            images: album.album.images,
+          }))}
+          emptyMessage="No tienes álbumes guardados."
+        />
         <CardsPagination
           currentPage={currentPage}
           totalPages={totalPages}

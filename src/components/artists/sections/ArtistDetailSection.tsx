@@ -1,6 +1,6 @@
 import { CircleCheck, CircleCheckFill } from 'akar-icons';
 import React from 'react';
-import { SpotifyArtist } from '../../types/artists';
+import { SpotifyArtist } from '../../../types/artists';
 
 interface ArtistDetailSectionProps {
   artist: SpotifyArtist;

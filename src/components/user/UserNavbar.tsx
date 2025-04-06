@@ -1,9 +1,8 @@
-import { Logout } from '@carbon/icons-react';
 import React from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
+import UserLogout from './UserLogout';
 
 const UserNavbar: React.FC = () => {
-  const navigate = useNavigate();
   const searchPathname = '/search';
   const myAlbumsPathname = '/my-albums';
 
@@ -11,10 +10,6 @@ const UserNavbar: React.FC = () => {
     const textColor =
       window.location.pathname === link ? 'text-[#D6F379]' : 'text-white';
     return textColor;
-  };
-  const handleLogout = () => {
-    localStorage.removeItem('spotifyAccess');
-    navigate('/');
   };
 
   return (
@@ -31,13 +26,7 @@ const UserNavbar: React.FC = () => {
       >
         Mis albumes
       </Link>
-
-      <button
-        onClick={handleLogout}
-        className="h4 flex h-5 items-center border-l-1 border-white pl-3 sm:px-4"
-      >
-        <Logout className="h-full w-full" />
-      </button>
+      <UserLogout />
     </nav>
   );
 };

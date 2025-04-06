@@ -1,9 +1,8 @@
 import React from 'react';
-import ArtistSearchSection from '../components/search/ArtistSearchSection';
-import SearchHeroSection from '../components/search/SearchHeroSection';
+import ArtistSearchSection from '../components/search/sections/ArtistSearchSection';
+import SearchHeroSection from '../components/search/sections/SearchHeroSection';
 
 const SearchPage: React.FC = () => {
-  const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
   const sessionToken = sessionStorage.getItem('spotifyAccess') ?? '';
   const ACCESS_TOKEN_OBJECT = sessionToken ? JSON.parse(sessionToken) : null;
   const isProcessed = React.useRef(false);

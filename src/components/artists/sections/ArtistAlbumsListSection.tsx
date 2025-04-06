@@ -1,8 +1,8 @@
 import React from 'react';
-import AlbumCard from '../albums/AlbumCard';
-import CardsPagination from '../common/CardsPagination';
-import { SpotifyArtist } from '../../types/artists';
-import useArtistAlbums from '../../hooks/useArtistAlbums';
+import CardsPagination from '../../common/CardsPagination';
+import { SpotifyArtist } from '../../../types/artists';
+import useArtistAlbums from '../../../hooks/useArtistAlbums';
+import AlbumGrid from '../../common/AlbumGrid';
 
 interface ArtistAlbumsListProps {
   artist: SpotifyArtist;
@@ -30,11 +30,15 @@ const ArtistAlbumsListSection: React.FC<ArtistAlbumsListProps> = ({
   };
 
   if (loading) {
-    return <p>Cargando álbumes...</p>;
+    return <div className="mt-20 text-[#D6F379]">Cargando álbumes...</div>;
   }
 
   if (error) {
-    return <p>Error al cargar los álbumes: {error}</p>;
+    return (
+      <div className="mt-20 text-[#D6F379]">
+        Error al cargar los álbumes: {error}
+      </div>
+    );
   }
 
   return (
@@ -43,23 +47,15 @@ const ArtistAlbumsListSection: React.FC<ArtistAlbumsListProps> = ({
         Guarda tus albumes favoritos de {artist.name}
       </p>
       <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">
-        <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {albums && albums.items?.length > 0 ? (
-            albums.items.map((album, index) => (
-              <AlbumCard
-                key={index}
-                albumId={album.id}
-                albumName={album.name}
-                publishedDate={album.release_date}
-                imageUrl={album.images[0]?.url}
-              />
-            ))
-          ) : (
-            <p className="col-span-full my-10 text-center text-base text-[#D6F379]">
-              No se encontraron álbumes para este artista.
-            </p>
-          )}
-        </div>
+        <AlbumGrid
+          albums={albums.items.map((album) => ({
+            id: album.id,
+            name: album.name,
+            release_date: album.release_date,
+            images: album.images,
+          }))}
+          emptyMessage="No se encontraron álbumes para este artista."
+        />
         <CardsPagination
           currentPage={currentPage}
           totalPages={totalPages}
