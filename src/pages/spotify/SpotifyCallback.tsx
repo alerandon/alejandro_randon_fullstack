@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import spotifyService from '../services/spotifyService';
+import spotifyService from '../../services/spotifyService';
 
 const SpotifyCallback = () => {
   const navigate = useNavigate();

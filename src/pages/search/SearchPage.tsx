@@ -1,6 +1,6 @@
 import React from 'react';
-import ArtistSearchSection from '../components/search/sections/ArtistSearchSection';
-import SearchHeroSection from '../components/search/sections/SearchHeroSection';
+import ArtistSearchSection from '../../components/search/sections/ArtistSearchSection';
+import SearchHeroSection from '../../components/search/sections/SearchHeroSection';
 
 const SearchPage: React.FC = () => {
   const sessionToken = sessionStorage.getItem('spotifyAccess') ?? '';

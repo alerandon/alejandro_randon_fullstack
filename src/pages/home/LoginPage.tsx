@@ -1,6 +1,6 @@
 import React from 'react';
-import LoginNavbar from '../components/login/LoginNavbar';
-import LoginMain from '../components/login/LoginMain';
+import LoginNavbar from '../../components/login/LoginNavbar';
+import LoginMain from '../../components/login/LoginMain';
 
 const LoginPage: React.FC = () => {
   return (

@@ -2,11 +2,15 @@ import React from 'react';
 import { Routes, Route } from 'react-router';
 import UserLayout from './components/user/UserLayout';
 
-const LoginPage = React.lazy(() => import('./pages/LoginPage'));
-const SpotifyCallback = React.lazy(() => import('./pages/SpotifyCallback'));
-const SearchPage = React.lazy(() => import('./pages/SearchPage'));
-const ArtistDetailPage = React.lazy(() => import('./pages/ArtistDetailPage'));
-const MyAlbumsPage = React.lazy(() => import('./pages/MyAlbumsPage'));
+const LoginPage = React.lazy(() => import('./pages/home/LoginPage'));
+const SpotifyCallback = React.lazy(
+  () => import('./pages/spotify/SpotifyCallback'),
+);
+const SearchPage = React.lazy(() => import('./pages/search/SearchPage'));
+const ArtistDetailPage = React.lazy(
+  () => import('./pages/search/ArtistDetailPage'),
+);
+const MyAlbumsPage = React.lazy(() => import('./pages/my-albums/MyAlbumsPage'));
 
 const AppRoutes: React.FC = () => {
   return (
