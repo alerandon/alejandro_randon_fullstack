@@ -1,6 +1,6 @@
 import React from 'react';
 import CardsPagination from '../../common/CardsPagination';
-import useArtistSearch from '../../../hooks/useArtistSearch';
+import useArtistSearch from '../../../hooks/artists/useArtistSearch';
 import SearchInput from '../SearchInput';
 import SearchArtistGrid from '../SearchArtistGrid';
 

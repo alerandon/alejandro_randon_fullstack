@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import spotifyService from '../services/spotifyService';
+import spotifyService from '../../services/spotifyService';
 
 const useSaveAlbumsForCurrentUser = (token: string) => {
   const [loading, setLoading] = useState<boolean>(false);

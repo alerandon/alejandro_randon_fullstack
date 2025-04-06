@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import spotifyService from '../services/spotifyService';
+import spotifyService from '../../services/spotifyService';
 
 const useCheckUserSavedAlbums = (albumIds: string[], token: string) => {
   const [savedStatus, setSavedStatus] = useState<boolean[]>([]);

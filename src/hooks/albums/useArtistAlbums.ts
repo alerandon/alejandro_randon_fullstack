@@ -1,6 +1,6 @@
 import React from 'react';
-import spotifyService from '../services/spotifyService';
-import { SpotifyArtistAlbums } from '../types/albums';
+import spotifyService from '../../services/spotifyService';
+import { SpotifyArtistAlbums } from '../../types/albums';
 
 interface Album {
   id: string;

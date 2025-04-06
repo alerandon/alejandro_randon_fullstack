@@ -1,7 +1,7 @@
 import React from 'react';
 import AlbumCard from '../AlbumCard';
 import CardsPagination from '../../common/CardsPagination';
-import useUserSavedAlbums from '../../../hooks/useUserSavedAlbums';
+import useUserSavedAlbums from '../../../hooks/albums/useUserSavedAlbums';
 import AlbumGrid from '../../common/AlbumGrid';
 
 const MyAlbumsListSection: React.FC = () => {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import ElementCard from '../common/ElementCard';
-import useCheckUserSavedAlbums from '../../hooks/useCheckUserSavedAlbums';
-import useRemoveUserSavedAlbums from '../../hooks/useRemoveUserSavedAlbums';
-import useSaveAlbumsForCurrentUser from '../../hooks/useSaveAlbumsForCurrentUser';
+import useCheckUserSavedAlbums from '../../hooks/albums/useCheckUserSavedAlbums';
+import useRemoveUserSavedAlbums from '../../hooks/albums/useRemoveUserSavedAlbums';
+import useSaveAlbumsForCurrentUser from '../../hooks/albums/useSaveAlbumsForCurrentUser';
 
 const AlbumCard: React.FC<{
   albumId: string;

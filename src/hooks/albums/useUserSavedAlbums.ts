@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import spotifyService from '../services/spotifyService';
+import spotifyService from '../../services/spotifyService';
 
 const useUserSavedAlbums = (token: string, page: number = 1) => {
   const [albums, setAlbums] = useState<any>();

@@ -1,7 +1,7 @@
 import React from 'react';
 import AppNameIcon from '../common/AppNameIcon';
 import UserNavbar from './UserNavbar';
-import { ParentElementProps } from '../../types/interfaces';
+import { ParentElementProps } from '../../types/parentElement';
 import AppHeader from '../common/AppHeader';
 import AppMain from '../common/AppMain';
 

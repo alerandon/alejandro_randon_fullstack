@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 
 const spotifyService = {
@@ -47,7 +49,15 @@ const spotifyService = {
       }
 
       data = await response.json();
-      const jsonData = JSON.stringify(data);
+      const expiresInAsDate = dayjs()
+        .add(data.expires_in, 'second')
+        .toISOString();
+      const parsedData = {
+        ...data,
+        expires_in: expiresInAsDate,
+      };
+
+      const jsonData = JSON.stringify(parsedData);
       sessionStorage.setItem('spotifyAccess', jsonData);
     } catch (error) {
       console.error('Error exchanging authorization code for token:', error);

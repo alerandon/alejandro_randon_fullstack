@@ -1,7 +1,7 @@
 import React from 'react';
 import CardsPagination from '../../common/CardsPagination';
 import { SpotifyArtist } from '../../../types/artists';
-import useArtistAlbums from '../../../hooks/useArtistAlbums';
+import useArtistAlbums from '../../../hooks/albums/useArtistAlbums';
 import AlbumGrid from '../../common/AlbumGrid';
 
 interface ArtistAlbumsListProps {

@@ -1,6 +1,6 @@
 import React from 'react';
-import spotifyService from '../services/spotifyService';
-import { SpotifyArtist } from '../types/artists';
+import spotifyService from '../../services/spotifyService';
+import { SpotifyArtist } from '../../types/artists';
 
 const useArtistById = (artistId: string) => {
   const [artist, setArtist] = React.useState<SpotifyArtist>();
