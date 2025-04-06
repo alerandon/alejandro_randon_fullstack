@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
+dayjs.extend(isSameOrAfter);
 
 const useSpotifyAuthGuard = () => {
   const sessionToken = sessionStorage.getItem('spotifyAccess') ?? '';
@@ -12,12 +14,10 @@ const useSpotifyAuthGuard = () => {
   useEffect(() => {
     if (isProcessed.current) return;
 
-    const accessToken = ACCESS_TOKEN_OBJECT?.access_token;
-    const expiresAt = ACCESS_TOKEN_OBJECT?.expires_at;
-    const currentTime = dayjs().toDate();
-    
+    const accessToken = ACCESS_TOKEN_OBJECT?.access_token ?? undefined;
+    const expiresIn = ACCESS_TOKEN_OBJECT?.expires_in ?? undefined;
+    const tokenIsExpired = dayjs().isSameOrAfter(dayjs(expiresIn));
 
-    const tokenIsExpired = expiresAt && currentTime >= expiresAt;
     if (!accessToken || tokenIsExpired) {
       console.error(
         'Access token is missing or expired. Redirecting to login.',

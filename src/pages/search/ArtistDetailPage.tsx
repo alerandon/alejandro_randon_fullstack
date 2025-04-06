@@ -3,8 +3,11 @@ import { useParams } from 'react-router';
 import ArtistDetailSection from '../../components/artists/sections/ArtistDetailSection';
 import useArtistById from '../../hooks/artists/useArtistById';
 import ArtistAlbumsListSection from '../../components/artists/sections/ArtistAlbumsListSection';
+import useSpotifyAuthGuard from '../../hooks/auth/useSpotifyAuthGuard';
 
 const ArtistDetailPage: React.FC = () => {
+  useSpotifyAuthGuard();
+
   const { id } = useParams<{ id: string }>();
   const { artist, error } = useArtistById(id || '');
   console.log('ArtistDetailPage: ', artist);
