@@ -12,6 +12,7 @@ const config: Config = {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '^.+\\.(png|jpg|jpeg|gif|svg)$': '<rootDir>/src/__mocks__/fileMock.js',
     '^import.meta.env$': '<rootDir>/src/__mocks__/importMetaEnvMock.js',
+    '\\.(svg\\?react)$': '<rootDir>/src/__mocks__/svgMock.js',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
