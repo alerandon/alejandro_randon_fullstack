@@ -1,6 +1,6 @@
 # Alejandro Randon Fullstack Project
 
-Welcome to the Alejandro Randon Fullstack project! This README provides all the necessary instructions to set up and run the project locally. Follow the steps below to get started.
+This README provides all the necessary instructions to set up and run the project locally. Follow the steps below to get started.
 
 ---
 
