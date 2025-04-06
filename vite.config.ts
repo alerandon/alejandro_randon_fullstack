@@ -15,7 +15,6 @@ export default defineConfig(async () => {
       EnvironmentPlugin([
         'VITE_SPOTIFY_API_CLIENT_ID',
         'VITE_SPOTIFY_API_CLIENT_SECRET',
-        'VITE_SPOTIFY_API_REDIRECT_URI',
       ]),
     ],
   };

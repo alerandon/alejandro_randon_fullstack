@@ -82,7 +82,6 @@ Create a `.env` file in the root directory and add the following variables:
 ```env
 VITE_SPOTIFY_API_CLIENT_ID=<your_spotify_client_id>
 VITE_SPOTIFY_API_CLIENT_SECRET=<your_spotify_client_secret>
-VITE_SPOTIFY_API_REDIRECT_URI=<your_redirect_uri>
 ```
 
 Replace the placeholders with your actual Spotify API credentials.

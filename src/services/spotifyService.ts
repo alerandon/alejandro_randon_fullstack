@@ -6,7 +6,7 @@ const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 
 const clientId = process.env.VITE_SPOTIFY_API_CLIENT_ID;
 const clientSecret = process.env.VITE_SPOTIFY_API_CLIENT_SECRET;
-const redirectUri = process.env.VITE_SPOTIFY_API_REDIRECT_URI;
+const redirectUri = window.location.origin + '/spotify/callback';
 
 const spotifyService = {
   redirectToLogin: () => {
