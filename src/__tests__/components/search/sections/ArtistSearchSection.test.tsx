@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router';
 import ArtistSearchSection from '../../../../components/search/sections/ArtistSearchSection';
 import useArtistSearch from '../../../../hooks/artists/useArtistSearch';
 
@@ -11,9 +12,13 @@ describe('ArtistSearchSection', () => {
       artists: null,
       error: null,
     });
-    render(<ArtistSearchSection query="test" />);
+    render(
+      <BrowserRouter>
+        <ArtistSearchSection />
+      </BrowserRouter>,
+    );
 
-    expect(screen.getByText(/loading artists.../i)).toBeInTheDocument();
+    expect(screen.getByText(/cargando artistas.../i)).toBeInTheDocument();
   });
 
   it('should display an error message if the search fails', () => {
@@ -22,35 +27,48 @@ describe('ArtistSearchSection', () => {
       artists: null,
       error: 'Network error',
     });
-    render(<ArtistSearchSection query="test" />);
+    render(
+      <BrowserRouter>
+        <ArtistSearchSection />
+      </BrowserRouter>,
+    );
 
     expect(
-      screen.getByText(/error loading artists: network error/i),
+      screen.getByText(/error al cargar los artistas: network error/i),
     ).toBeInTheDocument();
   });
 
   it('should render the artists correctly', () => {
     (useArtistSearch as jest.Mock).mockReturnValue({
       loading: false,
-      artists: [
-        {
-          id: '1',
-          name: 'Artist 1',
-          imageUrl: 'url1',
-          followers: 1000,
-          popularityScore: 80,
-        },
-        {
-          id: '2',
-          name: 'Artist 2',
-          imageUrl: 'url2',
-          followers: 2000,
-          popularityScore: 90,
-        },
-      ],
+      artists: {
+        items: [
+          {
+            id: '1',
+            name: 'Artist 1',
+            imageUrl: 'url1',
+            followers: 1000,
+            popularityScore: 80,
+          },
+          {
+            id: '2',
+            name: 'Artist 2',
+            imageUrl: 'url2',
+            followers: 2000,
+            popularityScore: 90,
+          },
+        ],
+        total: 2,
+        limit: 2,
+      },
       error: null,
+      searchArtists: jest.fn(),
     });
-    render(<ArtistSearchSection query="test" />);
+    render(
+      <BrowserRouter>
+        <ArtistSearchSection />
+      </BrowserRouter>,
+    );
 
     expect(screen.getByText(/artist 1/i)).toBeInTheDocument();
     expect(screen.getByText(/artist 2/i)).toBeInTheDocument();

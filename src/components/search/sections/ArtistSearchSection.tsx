@@ -5,7 +5,7 @@ import SearchInput from '../SearchInput';
 import SearchArtistGrid from '../SearchArtistGrid';
 
 const ArtistSearchSection: React.FC = () => {
-  const { artists, searchArtists } = useArtistSearch();
+  const { artists, searchArtists, loading, error } = useArtistSearch();
 
   const totalPages = artists ? Math.ceil(artists.total / artists.limit) : 1;
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -27,6 +27,16 @@ const ArtistSearchSection: React.FC = () => {
       searchArtists(searchValue.current, currentPage);
     }
   }, [currentPage]);
+
+  if (loading) {
+    return <div className="text-[#D6F379]">Cargando artistas...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="text-red-500">Error al cargar los artistas: {error}</div>
+    );
+  }
 
   console.log('Artists:', artists);
   return (

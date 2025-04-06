@@ -6,10 +6,20 @@ describe('SearchHeroSection', () => {
     render(<SearchHeroSection />);
 
     expect(
-      screen.getByText(/search for your favorite artists/i),
+      screen.getByText((content, element) => {
+        const hasText = (node: Element) =>
+          node.textContent === 'Busca tus artistas';
+        const nodeHasText = hasText(element!);
+        const childrenDontHaveText = Array.from(element!.children).every(
+          (child) => !hasText(child),
+        );
+        return nodeHasText && childrenDontHaveText;
+      }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/discover new music and explore artists/i),
+      screen.getByText(
+        /encuentra tus artistas favoritos gracias a nuestro buscador/i,
+      ),
     ).toBeInTheDocument();
   });
 });
