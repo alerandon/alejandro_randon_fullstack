@@ -1,21 +1,18 @@
 import React from 'react';
 import ElementCard from '../common/ElementCard';
+import { SpotifyArtist } from '../../types/artists';
 
 const ArtistCard: React.FC<{
-  artistId: string;
-  artistName: string;
-  followers: number;
-  imageUrl: string;
-}> = ({ artistId, artistName, followers, imageUrl }) => {
-  const artistSubtitle = `Seguidores: ${followers.toLocaleString()}`;
-  const artistLinkTo = `/search/artists/${artistId}`;
+  artist: SpotifyArtist;
+}> = ({ artist }) => {
+  const artistSubtitle = `Seguidores: ${artist.followers.toLocaleString()}`;
+  const artistLinkTo = `/search/artists/${artist.id}`;
 
   return (
     <ElementCard
-      id={artistId}
-      title={artistName}
+      title={artist.name}
       subtitle={artistSubtitle}
-      imageUrl={imageUrl}
+      imageUrl={artist.imageUrl}
       linkTo={artistLinkTo}
     />
   );

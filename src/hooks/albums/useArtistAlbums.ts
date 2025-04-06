@@ -1,16 +1,9 @@
 import React from 'react';
 import spotifyService from '../../services/spotifyService';
-import { SpotifyArtistAlbums } from '../../types/albums';
-
-interface Album {
-  id: string;
-  name: string;
-  release_date: string;
-  images: { url: string }[];
-}
+import { SpotifyAlbumsPagination } from '../../types/albums';
 
 const useArtistAlbums = (artistId: string, token: string, page: number = 1) => {
-  const [albums, setAlbums] = React.useState<SpotifyArtistAlbums>();
+  const [albums, setAlbums] = React.useState<SpotifyAlbumsPagination>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
 

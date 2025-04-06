@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import spotifyService from '../../services/spotifyService';
+import { SpotifyAlbumsPagination } from '../../types/albums';
 
 const useUserSavedAlbums = (token: string, page: number = 1) => {
-  const [albums, setAlbums] = useState<any>();
+  const [albums, setAlbums] = useState<SpotifyAlbumsPagination>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

@@ -1,4 +1,4 @@
-export interface SpotifyArtistsSearch {
+export interface SpotifyArtistsPagination {
   href: string;
   items: SpotifyArtist[];
   limit: number;
@@ -11,11 +11,7 @@ export interface SpotifyArtistsSearch {
 export interface SpotifyArtist {
   id: string;
   name: string;
-  followers: {
-    total: number;
-  };
-  images: Array<{
-    url: string;
-  }>;
-  popularity: number;
+  imageUrl: string;
+  followers: number;
+  popularityScore: number;
 }

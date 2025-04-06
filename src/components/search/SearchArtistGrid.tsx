@@ -1,8 +1,9 @@
 import React from 'react';
 import ArtistCard from '../artists/ArtistCard';
+import { SpotifyArtistsPagination } from '../../types/artists';
 
 interface SearchArtistGridProps {
-  artists: any;
+  artists: SpotifyArtistsPagination;
   searchValue: React.RefObject<string>;
 }
 
@@ -21,13 +22,7 @@ const SearchArtistGrid: React.FC<SearchArtistGridProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {hasItems ? (
           artists.items.map((artist, index) => (
-            <ArtistCard
-              key={index}
-              artistId={artist.id}
-              artistName={artist.name}
-              followers={artist.followers.total}
-              imageUrl={artist.images[0]?.url}
-            />
+            <ArtistCard key={index} artist={artist} />
           ))
         ) : (
           <p className="col-span-full my-10 text-center text-base text-[#D6F379]">

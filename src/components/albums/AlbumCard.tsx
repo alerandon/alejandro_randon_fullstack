@@ -3,18 +3,16 @@ import ElementCard from '../common/ElementCard';
 import useCheckUserSavedAlbums from '../../hooks/albums/useCheckUserSavedAlbums';
 import useRemoveUserSavedAlbums from '../../hooks/albums/useRemoveUserSavedAlbums';
 import useSaveAlbumsForCurrentUser from '../../hooks/albums/useSaveAlbumsForCurrentUser';
+import { SpotifyAlbum } from '../../types/albums';
 
 const AlbumCard: React.FC<{
-  albumId: string;
-  albumName: string;
-  publishedDate: string;
-  imageUrl: string;
-}> = ({ albumId, albumName, publishedDate, imageUrl }) => {
+  album: SpotifyAlbum;
+}> = ({ album }) => {
   const token = JSON.parse(
     sessionStorage.getItem('spotifyAccess') || '{}',
   ).access_token;
 
-  const albumIds = useMemo(() => [albumId], [albumId]);
+  const albumIds = useMemo(() => [album.id], [album.id]);
   const { savedStatus, loading } = useCheckUserSavedAlbums(albumIds, token);
   const { removeAlbum } = useRemoveUserSavedAlbums(token);
   const { saveAlbum } = useSaveAlbumsForCurrentUser(token);
@@ -28,21 +26,20 @@ const AlbumCard: React.FC<{
   }, [savedStatus, loading]);
 
   const handleRemove = async () => {
-    const albumIsRemoved = await removeAlbum(albumId);
+    const albumIsRemoved = await removeAlbum(album.id);
     if (albumIsRemoved) setIsSaved(false);
   };
 
   const handleSave = async () => {
-    const albumIsSaved = await saveAlbum(albumId);
+    const albumIsSaved = await saveAlbum(album.id);
     if (albumIsSaved) setIsSaved(true);
   };
 
   return (
     <ElementCard
-      id={albumId}
-      title={albumName}
-      subtitle={`Publicado: ${publishedDate}`}
-      imageUrl={imageUrl}
+      title={album.name}
+      subtitle={`Publicado: ${album.publishedDate}`}
+      imageUrl={album.imageUrl}
       isActionable
       onPrimaryAction={isSaved ? handleRemove : handleSave}
       primaryActionLabel={isSaved ? '- Remover album' : '+ Agregar album'}

@@ -1,13 +1,9 @@
 import React from 'react';
 import AlbumCard from '../albums/AlbumCard';
+import { SpotifyAlbum } from '../../types/albums';
 
 interface AlbumGridProps {
-  albums: Array<{
-    id: string;
-    name: string;
-    release_date: string;
-    images: Array<{ url: string }>;
-  }>;
+  albums: SpotifyAlbum[];
   emptyMessage?: string;
 }
 
@@ -15,15 +11,7 @@ const AlbumGrid: React.FC<AlbumGridProps> = ({ albums, emptyMessage }) => {
   return (
     <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
       {albums.length > 0 ? (
-        albums.map((album, index) => (
-          <AlbumCard
-            key={index}
-            albumId={album.id}
-            albumName={album.name}
-            publishedDate={album.release_date}
-            imageUrl={album.images[0]?.url}
-          />
-        ))
+        albums.map((album, index) => <AlbumCard key={index} album={album} />)
       ) : (
         <p className="col-span-full my-10 text-center text-base text-[#D6F379]">
           {emptyMessage || 'No se encontraron álbumes.'}

@@ -1,8 +1,7 @@
 import React from 'react';
-import AlbumCard from '../AlbumCard';
+import AlbumGrid from '../../common/AlbumGrid';
 import CardsPagination from '../../common/CardsPagination';
 import useUserSavedAlbums from '../../../hooks/albums/useUserSavedAlbums';
-import AlbumGrid from '../../common/AlbumGrid';
 
 const MyAlbumsListSection: React.FC = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -30,15 +29,17 @@ const MyAlbumsListSection: React.FC = () => {
     );
   }
 
+  console.log('Albums:', albums);
+
   return (
     <div className="mt-12 flex w-full flex-col items-center md:mt-18">
       <div className="mx-auto flex w-full flex-col items-center gap-12 lg:gap-20">
         <AlbumGrid
-          albums={albums.items.map((album) => ({
-            id: album.album.id,
-            name: album.album.name,
-            release_date: album.album.release_date,
-            images: album.album.images,
+          albums={albums!.items.map((album) => ({
+            id: album.id,
+            name: album.name,
+            publishedDate: album.publishedDate,
+            imageUrl: album.imageUrl,
           }))}
           emptyMessage="No tienes álbumes guardados."
         />

@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import { SpotifyArtist, SpotifyArtistsPagination } from '../types/artists';
+import { SpotifyAlbum, SpotifyAlbumsPagination } from '../types/albums';
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 
@@ -65,7 +67,11 @@ const spotifyService = {
     return data;
   },
 
-  getArtists: async (query: string, page: number = 1, token: string) => {
+  getArtists: async (
+    query: string,
+    page: number = 1,
+    token: string,
+  ): Promise<SpotifyArtistsPagination> => {
     if (!query) {
       console.error('El parámetro de búsqueda (query) está vacío.');
       throw new Error('El parámetro de búsqueda no puede estar vacío.');
@@ -99,15 +105,36 @@ const spotifyService = {
       }
 
       const data = await response.json();
-      console.log('Datos recibidos de la API:', data.artists);
-      return data.artists;
+      const parsedItems = data.artists.items.map((data: any): SpotifyArtist => {
+        const formattedName = data?.name.replace(/ /g, '+');
+        const artistImageUrl =
+          data?.images[0]?.url ||
+          `https://placehold.co/500/gray/white?text=${formattedName}`;
+
+        return {
+          id: data.id,
+          name: data.name,
+          imageUrl: artistImageUrl,
+          followers: data.followers?.total || 0,
+          popularityScore: data.popularity || 0,
+        };
+      });
+      const parsedData = {
+        ...data.artists,
+        items: parsedItems,
+      };
+
+      return parsedData;
     } catch (error) {
       console.error('Error en getArtists:', error);
       throw error;
     }
   },
 
-  getArtistById: async (artistId: string, token: string) => {
+  getArtistById: async (
+    artistId: string,
+    token: string,
+  ): Promise<SpotifyArtist> => {
     try {
       const response = await fetch(
         `${SPOTIFY_API_BASE_URL}/artists/${artistId}`,
@@ -123,7 +150,24 @@ const spotifyService = {
       }
 
       const data = await response.json();
-      return data;
+      console.log('Artista recibido de la API:', data);
+
+      const formattedName = data.name?.replace(/ /g, '+');
+      const artistImageUrl =
+        data?.images[0]?.url ||
+        `https://placehold.co/500/gray/white?text=${formattedName}`;
+
+      const parsedData: SpotifyArtist = {
+        id: data.id,
+        name: data.name,
+        imageUrl: artistImageUrl,
+        followers: data.followers?.total || 0,
+        popularityScore: data.popularity || 0,
+      };
+
+      console.log('Artista procesado de la API:', parsedData);
+
+      return parsedData;
     } catch (error) {
       console.error('Error en getArtistById:', error);
       throw error;
@@ -169,7 +213,26 @@ const spotifyService = {
 
       const data = await response.json();
       console.log('Álbumes recibidos de la API:', data);
-      return data;
+      const parsedItems = data.items.map((data: any): SpotifyAlbum => {
+        const formattedName = data?.name.replace(/ /g, '+');
+        const albumImageUrl =
+          data?.images[0]?.url ||
+          `https://placehold.co/500/gray/white?text=${formattedName}`;
+
+        return {
+          id: data.id,
+          name: data.name,
+          publishedDate: data.release_date,
+          imageUrl: albumImageUrl,
+        };
+      });
+      const parsedData = {
+        ...data,
+        items: parsedItems,
+      };
+
+      console.log('Álbumes procesados de la API:', parsedData);
+      return parsedData;
     } catch (error) {
       console.error('Error en getArtistAlbums:', error);
       throw error;
@@ -294,7 +357,10 @@ const spotifyService = {
     }
   },
 
-  getUserSavedAlbums: async (token: string, page: number = 1) => {
+  getUserSavedAlbums: async (
+    token: string,
+    page: number = 1,
+  ): Promise<SpotifyAlbumsPagination> => {
     if (!token) {
       console.error('El token de acceso no está disponible.');
       throw new Error(
@@ -323,8 +389,27 @@ const spotifyService = {
       }
 
       const data = await response.json();
+      const parsedItems = data.items.map((data: any): SpotifyAlbum => {
+        const formattedName = data?.album?.name.replace(/ /g, '+');
+        const albumImageUrl =
+          data?.album?.images[0]?.url ||
+          `https://placehold.co/500/gray/white?text=${formattedName}`;
+
+        return {
+          id: data.album.id,
+          name: data.album.name,
+          publishedDate: data.album.release_date,
+          imageUrl: albumImageUrl,
+        };
+      });
+      const parsedData = {
+        ...data,
+        items: parsedItems,
+      };
+
       console.log('Álbumes guardados recibidos de la API:', data);
-      return data;
+      console.log('Álbumes guardados procesados de la API:', parsedData);
+      return parsedData;
     } catch (error) {
       console.error('Error en getUserSavedAlbums:', error);
       throw error;

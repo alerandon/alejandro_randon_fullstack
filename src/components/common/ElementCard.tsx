@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 interface ElementCardProps {
-  id: string;
   title: string;
   subtitle: string;
   imageUrl: string;
@@ -15,7 +14,6 @@ interface ElementCardProps {
 }
 
 const ElementCard: React.FC<ElementCardProps> = ({
-  id,
   title,
   subtitle,
   imageUrl,
@@ -24,14 +22,10 @@ const ElementCard: React.FC<ElementCardProps> = ({
   primaryActionLabel,
   isActionable = false,
 }) => {
-  const formattedName = title.replace(/ /g, '+');
-  const finalImageUrl =
-    imageUrl || `https://placehold.co/400/gray/white?text=${formattedName}`;
-
   const content = (
     <div className="flex flex-col items-center rounded-3xl bg-transparent p-7 text-white hover:bg-[#D6F379] hover:text-gray-900 md:p-5 lg:p-4">
       <img
-        src={finalImageUrl}
+        src={imageUrl}
         alt={title}
         className="mb-4 aspect-square rounded-xl"
       />
