@@ -97,9 +97,3 @@ Here are some useful scripts you can run:
 - **`npm run build`**: Builds the project for production.
 - **`npm run preview`**: Previews the production build.
 - **`npm run lint`**: Lints the codebase for errors.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
